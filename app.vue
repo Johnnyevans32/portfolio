@@ -1,5 +1,5 @@
 <template>
-  <div class="grid gap-10 bg-[#e3bfbf]">
+  <div class="grid gap-10">
     <div>
       <div class="grid grid-cols-6 items-center py-4">
         <span class="col-start-2">0xjevan</span>
@@ -65,21 +65,22 @@
           :key="project.title"
           class="flex justify-between items-center border-2 border-black p-4 cursor-pointer"
         >
-          <div class="flex gap-4">
+          <div class="flex gap-4 items-center">
             <p>{{ project.year }}</p>
-            <p>{{ project.title }}</p>
+            <div class="flex flex-col">
+              <p>{{ project.title }}</p>
+              <div class="flex gap-2">
+                <span
+                  v-for="tech in project.technologies"
+                  :key="tech"
+                  class="text-xs"
+                  >#{{ tech }}</span
+                >
+              </div>
+            </div>
           </div>
 
-          <div class="flex gap-2">
-            <span
-              v-for="tech in project.technologies"
-              :key="tech"
-              class="border-2 border-black p-1"
-              >{{ tech }}</span
-            >
-          </div>
-
-          <!-- <div class="flex gap-4 self-end">
+          <div class="flex gap-4">
             <a
               class="flex items-center gap-1"
               v-for="link in project.links"
@@ -99,7 +100,7 @@
               />
               {{ link.type === "app" ? "live" : "code" }}
             </a>
-          </div> -->
+          </div>
         </div>
       </div>
     </div>
@@ -116,7 +117,7 @@
           class="flex justify-between items-center border-2 border-black p-4"
         >
           <div class="flex gap-4 items-center">
-            <p>{{ job.year }}</p>
+            <p class="w-24">{{ job.year }}</p>
             <div class="flex flex-col">
               <p>{{ job.title }}</p>
               <a :href="job.companySite" target="_blank" class="text-xs">
@@ -157,7 +158,7 @@
       </div>
       <div class="col-start-5 col-end-6 justify-self-end">
         <a
-          href="https://jevan.read.cv"
+          href="https://t.ly/MqlDf"
           target="_blank"
           class="flex items-center gap-1"
         >
@@ -210,7 +211,7 @@ export default defineComponent({
         title: "Pool X",
         desc: "token staking protocol",
         technologies: ["python", "web3"],
-        links: [{ type: "app", link: "https://pool-x.vercel.app/" }],
+        links: [{ type: "app", link: "https://pool-x.netlify.app/" }],
         year: "2023",
       },
     ]);
@@ -221,35 +222,35 @@ export default defineComponent({
         company: "Bento Africa",
         companySite: "",
         technologies: ["payroll", "node-js"],
-        year: "Present",
+        year: "2020-Present",
       },
       {
         title: "Frontend Engineer",
         company: "Dutch0x",
         companySite: "",
         technologies: ["ethereum", "web3"],
-        year: "2023",
+        year: "2023-2023",
       },
       {
         title: "Founder",
         company: "Deg X",
         companySite: "",
         technologies: ["ethereum", "web3"],
-        year: "2023",
+        year: "2022-2023",
       },
       {
         title: "Backend Engineer Intern",
         company: "HNG Internship",
         companySite: "",
         technologies: ["python", "APIs"],
-        year: "2020",
+        year: "2020-2020",
       },
       {
         title: "Fullstack Engineer Intern",
         company: "Skysenx Hub",
         companySite: "",
         technologies: ["php", "MySql"],
-        year: "2019",
+        year: "2019-2020",
       },
       {
         title: "Control Room Engineer Intern",
