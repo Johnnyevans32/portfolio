@@ -8,6 +8,7 @@
           <span
             v-for="item in navItems"
             :key="item.id"
+            class="cursor-pointer"
             @click="() => scrollToSection(item.id)"
           >
             {{ item.name }}
