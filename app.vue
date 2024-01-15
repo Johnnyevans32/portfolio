@@ -17,7 +17,7 @@
 
       <div class="grid grid-cols-6 min-h-screen items-center" id="home">
         <div class="transform translate-y-[1vh] col-start-2 col-span-2">
-          <img :src="`./pic.pn`" class="h-[60vh]" alt="dp" />
+          <img :src="`./pic.png`" class="h-[60vh]" alt="dp" />
           <h1 class="absolute bottom-1 right-4 text-[#f80000] text-8xl">
             portfolio
           </h1>
