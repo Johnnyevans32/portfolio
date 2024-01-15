@@ -17,8 +17,8 @@
 
       <div class="grid grid-cols-6 min-h-screen items-center" id="home">
         <div class="transform translate-y-[1vh] col-start-2 col-span-2">
-          <img src="./pic.png" class="h-[60vh]" alt="dp" />
-          <h1 class="absolute bottom-1 right-24 text-[#f80000] text-5xl">
+          <img src="/pic.png" class="h-[60vh]" alt="dp" />
+          <h1 class="absolute bottom-1 right-4 text-[#f80000] text-8xl">
             portfolio
           </h1>
         </div>
@@ -117,7 +117,7 @@
           class="flex justify-between items-center border-2 border-black p-4"
         >
           <div class="flex gap-4 items-center">
-            <p class="w-24">{{ job.year }}</p>
+            <p class="w-28">{{ job.year }}</p>
             <div class="flex flex-col">
               <p>{{ job.title }}</p>
               <a :href="job.companySite" target="_blank" class="text-xs">
@@ -221,43 +221,43 @@ export default defineComponent({
         title: "Senior Backend Engineer",
         company: "Bento Africa",
         companySite: "",
-        technologies: ["payroll", "node-js"],
-        year: "2020-Present",
+        technologies: ["payroll", "node-js", "psp integrations"],
+        year: "2020 - Present",
       },
       {
         title: "Frontend Engineer",
         company: "Dutch0x",
         companySite: "",
         technologies: ["ethereum", "web3"],
-        year: "2023-2023",
+        year: "2023 - 2023",
       },
       {
         title: "Founder",
         company: "Deg X",
         companySite: "",
         technologies: ["ethereum", "web3"],
-        year: "2022-2023",
+        year: "2022 - 2023",
       },
       {
         title: "Backend Engineer Intern",
         company: "HNG Internship",
         companySite: "",
         technologies: ["python", "APIs"],
-        year: "2020-2020",
+        year: "2020 - 2020",
       },
       {
         title: "Fullstack Engineer Intern",
         company: "Skysenx Hub",
         companySite: "",
         technologies: ["php", "MySql"],
-        year: "2019-2020",
+        year: "2019 - 2020",
       },
       {
         title: "Control Room Engineer Intern",
         company: "Federal Radio Corporation of Nigeria",
         companySite: "",
         technologies: [],
-        year: "2018-2019",
+        year: "2018 - 2019",
       },
     ]);
 
