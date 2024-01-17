@@ -4,11 +4,11 @@
       <div :class="parentDivStyle" class="items-center py-4">
         <span class="col-start-2">0xjevan</span>
 
-        <div class="md:col-start-5 col-start-7 justify-self-end flex gap-2">
+        <div class="md:col-start-5 col-start-7 h-5 justify-self-end flex gap-2">
           <span
             v-for="item in navItems"
             :key="item.id"
-            class="cursor-pointer"
+            class="cursor-pointer hover:border-b-2 hover:border-[#f80000]"
             @click="() => scrollToSection(item.id)"
           >
             {{ item.name }}
@@ -16,11 +16,7 @@
         </div>
       </div>
 
-      <div
-        :class="parentDivStyle"
-        class="min-h-screen items-center gap-4"
-        id="home"
-      >
+      <div :class="parentDivStyle" class="min-h-screen items-center gap-4">
         <div
           class="transform translate-y-[1vh] md:col-start-2 md:col-span-2 col-start-2 col-span-6"
         >
@@ -48,7 +44,7 @@
     <div
       :class="parentDivStyle"
       class="items-center py-10 text-white bg-black"
-      id="work"
+      id="summary"
     >
       <div class="md:col-start-3 md:col-span-2 col-start-2 col-span-6">
         <h1 :style="underlineText">what i do</h1>
@@ -66,7 +62,7 @@
       </div>
     </div>
 
-    <div :class="parentDivStyle">
+    <div :class="parentDivStyle" id="works">
       <div class="col-start-2 md:col-end-6 col-span-6 flex flex-col gap-4">
         <div class="flex gap-2 items-center">
           <font-awesome-icon icon="grip-lines" class="text-2xl" />
@@ -75,7 +71,7 @@
         <div
           v-for="project in projects"
           :key="project.title"
-          class="flex justify-between items-center border-2 border-black p-4 cursor-pointer"
+          class="flex justify-between items-center border-2 border-black p-4 cursor-pointer hover:bg-[#f80000] hover:text-white"
         >
           <div class="flex gap-4 items-center">
             <p>{{ project.year }}</p>
@@ -116,6 +112,38 @@
         </div>
       </div>
     </div>
+    <div :class="parentDivStyle">
+      <div class="col-start-2 md:col-end-6 col-span-6 flex flex-col gap-4">
+        <div class="flex gap-2 items-center">
+          <font-awesome-icon icon="grip-lines" class="text-2xl" />
+          <h2>articles</h2>
+        </div>
+        <div
+          v-for="article in articles"
+          :key="article.title"
+          class="flex justify-between items-center border-2 border-black p-4 cursor-pointer hover:bg-[#f80000] hover:text-white"
+        >
+          <div class="flex gap-4 items-center">
+            <p class="w-14 md:w-28">{{ article.date }}</p>
+            <div class="flex flex-col">
+              <p class="">{{ article.title }}</p>
+              <p class="text-xs">#{{ article.category }}</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <a
+              class="flex items-center gap-1"
+              :href="article.link"
+              target="_blank"
+            >
+              <font-awesome-icon icon="clock" class="text-xs" />
+              {{ article.readDuration }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div :class="parentDivStyle">
       <div class="col-start-2 md:col-end-6 col-span-6 flex flex-col gap-4">
@@ -126,7 +154,7 @@
         <div
           v-for="job in jobs"
           :key="job.company"
-          class="flex justify-between items-center border-2 border-black p-4"
+          class="flex justify-between items-center border-2 border-black p-4 hover:bg-[#f80000] hover:text-white"
         >
           <div class="flex gap-4 items-center">
             <p class="w-14 md:w-28">{{ job.year }}</p>
@@ -146,7 +174,7 @@
             <span
               v-for="tech in job.technologies"
               :key="tech"
-              class="border-2 border-black p-1"
+              class="border-2 border-black p-1 bg-white text-black"
               >{{ tech }}</span
             >
           </div>
@@ -170,7 +198,11 @@
         >
           <font-awesome-icon :icon="social.icon" class="text-xs" />
           {{ social.name }}
-          <font-awesome-icon icon="link" class="text-xs" />
+          <font-awesome-icon
+            icon="arrow-right"
+            :style="{ transform: 'rotate(315deg)' }"
+            class="text-xs"
+          />
         </a>
       </div>
       <div class="md:col-start-5 col-start-7 justify-self-end">
@@ -180,7 +212,10 @@
           class="flex items-center gap-1"
         >
           <font-awesome-icon icon="file" class="text-xs" />resume
-          <font-awesome-icon icon="link" class="text-xs"
+          <font-awesome-icon
+            icon="arrow-right"
+            :style="{ transform: 'rotate(315deg)' }"
+            class="text-xs"
         /></a>
       </div>
 
@@ -205,9 +240,9 @@ export default defineComponent({
     const parentDivStyle = ref("grid grid-cols-8 md:grid-cols-6");
 
     const navItems = ref([
-      { name: "about me", id: "home" },
-      { name: "what i do", id: "work" },
-      { name: "contact me", id: "contact" },
+      { name: "about", id: "summary" },
+      { name: "works", id: "works" },
+      { name: "contacts", id: "contact" },
     ]);
 
     const projects = ref([
@@ -231,6 +266,23 @@ export default defineComponent({
         technologies: ["python", "web3"],
         links: [{ type: "app", link: "https://pool-x.netlify.app/" }],
         year: "2023",
+      },
+    ]);
+
+    const articles = ref([
+      {
+        title: "Deg X bringing cross chain defi interaction to users!!!",
+        category: "Defi",
+        date: "Jan 17, 2024",
+        readDuration: "1 min read",
+        link: "https://medium.com/@0xjevan/deg-x-bringing-cross-chain-defi-interaction-to-users-8a1bd37c7646",
+      },
+      {
+        title: "I'll change the world",
+        category: "Personal",
+        date: "Mar 16, 2022",
+        readDuration: "1 min read",
+        link: "https://jevan.hashnode.dev/ill-change-the-world",
       },
     ]);
 
@@ -313,6 +365,7 @@ export default defineComponent({
       projects,
       socials,
       jobs,
+      articles,
       parentDivStyle,
       scrollToSection,
     };
@@ -352,8 +405,5 @@ h2 {
 p {
   font-size: 1rem;
   line-height: 1.5rem;
-}
-
-@media (max-width: 820px) {
 }
 </style>
