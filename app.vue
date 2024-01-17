@@ -26,7 +26,7 @@
         >
           <img :src="`./pic.png`" class="h-[60vh]" alt="dp" />
           <h1
-            class="hidden md:absolute bottom-1 right-4 text-[#f80000] md:text-8xl text-6xl"
+            class="absolute bottom-1 right-4 text-[#f80000] md:text-8xl text-6xl"
           >
             portfolio
           </h1>
@@ -135,9 +135,9 @@
               <a :href="job.companySite" target="_blank" class="text-xs">
                 {{ job.company }}
                 <font-awesome-icon
-                  icon="circle-right"
+                  icon="arrow-right"
                   :style="{ transform: 'rotate(315deg)' }"
-                  class="rounded-full text-white bg-black"
+                  class=""
               /></a>
             </div>
           </div>
