@@ -1,10 +1,10 @@
 <template>
   <div class="grid gap-10">
     <div>
-      <div class="grid grid-cols-6 items-center py-4">
+      <div :class="parentDivStyle" class="items-center py-4">
         <span class="col-start-2">0xjevan</span>
 
-        <div class="col-start-5 col-end-6 justify-self-end flex gap-2">
+        <div class="md:col-start-5 col-start-7 justify-self-end flex gap-2">
           <span
             v-for="item in navItems"
             :key="item.id"
@@ -16,14 +16,24 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-6 min-h-screen items-center" id="home">
-        <div class="transform translate-y-[1vh] col-start-2 col-span-2">
+      <div
+        :class="parentDivStyle"
+        class="min-h-screen items-center gap-4"
+        id="home"
+      >
+        <div
+          class="transform translate-y-[1vh] md:col-start-2 md:col-span-2 col-start-2 col-span-6"
+        >
           <img :src="`./pic.png`" class="h-[60vh]" alt="dp" />
-          <h1 class="absolute bottom-1 right-4 text-[#f80000] text-8xl">
+          <h1
+            class="hidden md:absolute bottom-1 right-4 text-[#f80000] md:text-8xl text-6xl"
+          >
             portfolio
           </h1>
         </div>
-        <div class="col-start-4 col-span-2 text-right">
+        <div
+          class="md:col-start-4 md:col-span-2 text-right col-start-2 col-span-6"
+        >
           <h1>Hello, I'm Evans Eburu.</h1>
           <p>
             i am a <b :style="underlineText">software engineer</b> based on
@@ -36,10 +46,11 @@
     </div>
 
     <div
-      class="grid grid-cols-6 items-center py-10 text-white bg-black"
+      :class="parentDivStyle"
+      class="items-center py-10 text-white bg-black"
       id="work"
     >
-      <div class="col-start-3 col-span-2">
+      <div class="md:col-start-3 md:col-span-2 col-start-2 col-span-6">
         <h1 :style="underlineText">what i do</h1>
         <p>
           as a <b :style="underlineText">software engineer</b> with a focus on
@@ -55,8 +66,8 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-6">
-      <div class="col-start-2 col-end-6 flex flex-col gap-4">
+    <div :class="parentDivStyle">
+      <div class="col-start-2 md:col-end-6 col-span-6 flex flex-col gap-4">
         <div class="flex gap-2 items-center">
           <font-awesome-icon icon="grip-lines" class="text-2xl" />
           <h2>selected projects</h2>
@@ -106,8 +117,8 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-6">
-      <div class="col-start-2 col-end-6 flex flex-col gap-4">
+    <div :class="parentDivStyle">
+      <div class="col-start-2 md:col-end-6 col-span-6 flex flex-col gap-4">
         <div class="flex gap-2 items-center">
           <font-awesome-icon icon="grip-lines" class="text-2xl" />
           <h2>work history</h2>
@@ -118,16 +129,20 @@
           class="flex justify-between items-center border-2 border-black p-4"
         >
           <div class="flex gap-4 items-center">
-            <p class="w-28">{{ job.year }}</p>
+            <p class="w-14 md:w-28">{{ job.year }}</p>
             <div class="flex flex-col">
               <p>{{ job.title }}</p>
               <a :href="job.companySite" target="_blank" class="text-xs">
-                {{ job.company }}</a
-              >
+                {{ job.company }}
+                <font-awesome-icon
+                  icon="circle-right"
+                  :style="{ transform: 'rotate(315deg)' }"
+                  class="rounded-full text-white bg-black"
+              /></a>
             </div>
           </div>
 
-          <div class="flex gap-2">
+          <div class="gap-2 md:flex hidden">
             <span
               v-for="tech in job.technologies"
               :key="tech"
@@ -140,7 +155,8 @@
     </div>
 
     <div
-      class="grid grid-cols-6 py-10 gap-4 rounded-t-2xl bg-black text-white"
+      :class="parentDivStyle"
+      class="py-10 gap-4 rounded-t-2xl bg-black text-white"
       id="contact"
     >
       <h1 class="col-start-2">contacts</h1>
@@ -157,7 +173,7 @@
           <font-awesome-icon icon="link" class="text-xs" />
         </a>
       </div>
-      <div class="col-start-5 col-end-6 justify-self-end">
+      <div class="md:col-start-5 col-start-7 justify-self-end">
         <a
           href="https://t.ly/MqlDf"
           target="_blank"
@@ -168,7 +184,7 @@
         /></a>
       </div>
 
-      <p class="col-span-6 text-center">&copy; 2024 0xjevan</p>
+      <p class="col-span-8 md:col-span-6 text-center">&copy; 2024 0xjevan</p>
     </div>
   </div>
 </template>
@@ -186,6 +202,7 @@ export default defineComponent({
       const releventDiv = document.getElementById(id);
       releventDiv?.scrollIntoView({ behavior: "smooth" });
     };
+    const parentDivStyle = ref("grid grid-cols-8 md:grid-cols-6");
 
     const navItems = ref([
       { name: "about me", id: "home" },
@@ -221,42 +238,42 @@ export default defineComponent({
       {
         title: "Senior Backend Engineer",
         company: "Bento Africa",
-        companySite: "",
+        companySite: "https://bento.africa",
         technologies: ["payroll", "node-js", "psp integrations"],
         year: "2020 - Present",
       },
       {
         title: "Frontend Engineer",
         company: "Dutch0x",
-        companySite: "",
+        companySite: "https://www.dutch0x.io/",
         technologies: ["ethereum", "web3"],
         year: "2023 - 2023",
       },
       {
         title: "Founder",
         company: "Deg X",
-        companySite: "",
+        companySite: "https://degx.typedream.app/",
         technologies: ["ethereum", "web3"],
         year: "2022 - 2023",
       },
       {
         title: "Backend Engineer Intern",
         company: "HNG Internship",
-        companySite: "",
+        companySite: "https://internship.zuri.team/",
         technologies: ["python", "APIs"],
         year: "2020 - 2020",
       },
       {
         title: "Fullstack Engineer Intern",
         company: "Skysenx Hub",
-        companySite: "",
+        companySite: "https://skysenx.com/",
         technologies: ["php", "MySql"],
         year: "2019 - 2020",
       },
       {
         title: "Control Room Engineer Intern",
         company: "Federal Radio Corporation of Nigeria",
-        companySite: "",
+        companySite: "https://radionigeria.gov.ng/",
         technologies: [],
         year: "2018 - 2019",
       },
@@ -296,6 +313,7 @@ export default defineComponent({
       projects,
       socials,
       jobs,
+      parentDivStyle,
       scrollToSection,
     };
   },
