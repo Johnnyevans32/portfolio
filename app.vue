@@ -4,7 +4,9 @@
       <div :class="parentDivStyle" class="items-center py-4">
         <span class="col-start-2">0xjevan</span>
 
-        <div class="md:col-start-5 col-start-7 h-5 justify-self-end flex gap-2">
+        <div
+          class="md:col-start-5 col-start-11 h-5 justify-self-end flex gap-2"
+        >
           <span
             v-for="item in navItems"
             :key="item.id"
@@ -18,7 +20,7 @@
 
       <div :class="parentDivStyle" class="min-h-screen items-center gap-4">
         <div
-          class="transform translate-y-[1vh] md:col-start-2 md:col-span-2 col-start-2 col-span-6"
+          class="transform translate-y-[1vh] md:col-start-2 md:col-span-2 col-start-2 col-span-10"
         >
           <img :src="`./pic.png`" class="h-[60vh]" alt="dp" />
           <h1
@@ -28,7 +30,7 @@
           </h1>
         </div>
         <div
-          class="md:col-start-4 md:col-span-2 text-right col-start-2 col-span-6"
+          class="md:col-start-4 md:col-span-2 text-right col-start-2 col-span-10"
         >
           <h1>Hello, I'm Evans Eburu.</h1>
           <p>
@@ -46,7 +48,7 @@
       class="items-center py-10 text-white bg-black"
       id="summary"
     >
-      <div class="md:col-start-3 md:col-span-2 col-start-2 col-span-6">
+      <div class="md:col-start-3 md:col-span-2 col-start-2 col-span-10">
         <h1 :style="underlineText">what i do</h1>
         <p>
           as a <b :style="underlineText">software engineer</b> with a focus on
@@ -63,7 +65,7 @@
     </div>
 
     <div :class="parentDivStyle" id="works">
-      <div class="col-start-2 md:col-end-6 col-span-6 flex flex-col gap-4">
+      <div class="col-start-2 md:col-end-6 col-span-10 flex flex-col gap-4">
         <div class="flex gap-2 items-center">
           <font-awesome-icon icon="grip-lines" class="text-2xl" />
           <h2>selected projects</h2>
@@ -113,7 +115,7 @@
       </div>
     </div>
     <div :class="parentDivStyle">
-      <div class="col-start-2 md:col-end-6 col-span-6 flex flex-col gap-4">
+      <div class="col-start-2 md:col-end-6 col-span-10 flex flex-col gap-4">
         <div class="flex gap-2 items-center">
           <font-awesome-icon icon="grip-lines" class="text-2xl" />
           <h2>articles</h2>
@@ -123,7 +125,7 @@
           :key="article.title"
           class="flex justify-between items-center border-2 border-black p-4 cursor-pointer hover:bg-[#f80000] hover:text-white"
         >
-          <div class="flex gap-4 items-center">
+          <div class="flex gap-4 items-center w-full">
             <p class="w-14 md:w-28">{{ article.date }}</p>
             <div class="flex flex-col">
               <p class="">{{ article.title }}</p>
@@ -146,7 +148,7 @@
     </div>
 
     <div :class="parentDivStyle">
-      <div class="col-start-2 md:col-end-6 col-span-6 flex flex-col gap-4">
+      <div class="col-start-2 md:col-end-6 col-span-10 flex flex-col gap-4">
         <div class="flex gap-2 items-center">
           <font-awesome-icon icon="grip-lines" class="text-2xl" />
           <h2>work history</h2>
@@ -205,7 +207,7 @@
           />
         </a>
       </div>
-      <div class="md:col-start-5 col-start-7 justify-self-end">
+      <div class="md:col-start-5 col-start-11 justify-self-end">
         <a
           href="https://t.ly/MqlDf"
           target="_blank"
@@ -219,7 +221,7 @@
         /></a>
       </div>
 
-      <p class="col-span-8 md:col-span-6 text-center">&copy; 2024 0xjevan</p>
+      <p class="col-span-12 md:col-span-6 text-center">&copy; 2024 0xjevan</p>
     </div>
   </div>
 </template>
@@ -237,7 +239,7 @@ export default defineComponent({
       const releventDiv = document.getElementById(id);
       releventDiv?.scrollIntoView({ behavior: "smooth" });
     };
-    const parentDivStyle = ref("grid grid-cols-8 md:grid-cols-6");
+    const parentDivStyle = ref("grid grid-cols-12 md:grid-cols-6");
 
     const navItems = ref([
       { name: "about", id: "summary" },
