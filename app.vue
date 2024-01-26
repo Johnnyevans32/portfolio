@@ -249,9 +249,9 @@ export default defineComponent({
 
     const projects = ref([
       {
-        title: "AiFinSight",
+        title: "Finsight AI",
         desc: "decentralised wallet",
-        technologies: ["nuxt3", "web5", "gpt"],
+        technologies: ["nuxt3", "web5", "ai"],
         links: [{ type: "app", link: "https://aifinsight.vercel.app/" }],
         year: "2024",
       },
@@ -272,6 +272,14 @@ export default defineComponent({
     ]);
 
     const articles = ref([
+      {
+        title:
+          "Unlocking Financial Potential: FinSight AI’s Promises for Empowered Finance",
+        category: "Decentralised Finance & AI",
+        date: "Jan 26, 2024",
+        readDuration: "2 min read",
+        link: "https://medium.com/@0xjevan/unlocking-financial-potential-finsight-ais-promises-for-empowered-finance-e0fb5ebdabcb",
+      },
       {
         title: "Deg X bringing cross chain defi interaction to users!!!",
         category: "Defi",
