@@ -120,30 +120,28 @@
           <font-awesome-icon icon="grip-lines" class="text-2xl" />
           <h2>articles</h2>
         </div>
-        <div
+        <NuxtLink
           v-for="article in articles"
           :key="article.title"
-          class="flex justify-between items-center border-2 border-black p-4 cursor-pointer hover:bg-[#f80000] hover:text-white"
+          :to="article.link"
+          target="_blank"
+          class="flex items-center border-2 border-black p-4 cursor-pointer hover:bg-[#f80000] hover:text-white"
         >
           <div class="flex gap-4 items-center w-full">
             <p class="w-14 md:w-28">{{ article.date }}</p>
-            <div class="flex flex-col">
+            <div class="flex flex-col w-full">
               <p class="">{{ article.title }}</p>
               <p class="text-xs">#{{ article.category }}</p>
             </div>
           </div>
 
-          <div class="flex gap-4">
-            <a
-              class="flex items-center gap-1"
-              :href="article.link"
-              target="_blank"
-            >
-              <font-awesome-icon icon="clock" class="text-xs" />
+          <span class="flex items-center gap-1 justify-end">
+            <font-awesome-icon icon="clock" class="text-xs" />
+            <p class="truncate">
               {{ article.readDuration }}
-            </a>
-          </div>
-        </div>
+            </p>
+          </span>
+        </NuxtLink>
       </div>
     </div>
 
