@@ -1,45 +1,47 @@
 <template>
-  <div class="grid gap-10">
-    <div>
-      <div :class="parentDivStyle" class="items-center py-4">
-        <span class="col-start-2">0xjevan</span>
+  <div class="grid">
+    <div
+      :class="parentDivStyle"
+      class="items-center border-b-2 border-black md:text-3xl text-lg fixed bg-[#feed01] z-20"
+    >
+      <span class="col-start-2">0xjevan</span>
 
-        <div
-          class="md:col-start-5 col-start-11 h-5 justify-self-end flex gap-2"
+      <div class="md:col-start-5 col-start-11 h-5 justify-self-end flex gap-2">
+        <span
+          v-for="item in navItems"
+          :key="item.id"
+          class="cursor-pointer hover:border-b-2 hover:border-[#f80000]"
+          @click="() => scrollToSection(item.id)"
         >
-          <span
-            v-for="item in navItems"
-            :key="item.id"
-            class="cursor-pointer hover:border-b-2 hover:border-[#f80000]"
-            @click="() => scrollToSection(item.id)"
-          >
-            {{ item.name }}
-          </span>
-        </div>
+          {{ item.name }}
+        </span>
       </div>
+    </div>
 
-      <div :class="parentDivStyle" class="min-h-screen items-center gap-4">
-        <div
-          class="transform translate-y-[1vh] md:col-start-2 md:col-span-2 col-start-2 col-span-10"
+    <div
+      :class="parentDivStyle"
+      class="min-h-screen items-center md:pt-0 pt-24 gap-4 bg-[#feed01]"
+    >
+      <div
+        class="transform translate-y-[1vh] md:col-start-2 md:col-span-2 col-start-2 col-span-10"
+      >
+        <img :src="`./pic.png`" class="h-[60vh]" alt="dp" />
+        <h1
+          class="absolute bottom-1 -right-6 text-[#f80000] md:text-9xl text-6xl"
         >
-          <img :src="`./pic.png`" class="h-[60vh]" alt="dp" />
-          <h1
-            class="absolute bottom-1 right-4 text-[#f80000] md:text-8xl text-6xl"
-          >
-            portfolio
-          </h1>
-        </div>
-        <div
-          class="md:col-start-4 md:col-span-2 text-right col-start-2 col-span-10"
-        >
-          <h1>Hello, I'm Evans Eburu.</h1>
-          <p>
-            i am a <b :style="underlineText">software engineer</b> based on
-            earth! focused on building applications with scalable architectures.
-            proud team player focused on achieving project objectives with speed
-            and accuracy.
-          </p>
-        </div>
+          portfolio
+        </h1>
+      </div>
+      <div
+        class="md:col-start-4 md:col-span-2 text-right col-start-2 col-span-10"
+      >
+        <h1>Hello, I'm Evans Eburu.</h1>
+        <p>
+          i am a <b :style="underlineText">software engineer</b> based on earth!
+          focused on building applications with scalable architectures. proud
+          team player focused on achieving project objectives with speed and
+          accuracy.
+        </p>
       </div>
     </div>
 
@@ -114,7 +116,7 @@
         </div>
       </div>
     </div>
-    <div :class="parentDivStyle">
+    <div :class="parentDivStyle" class="">
       <div class="col-start-2 md:col-end-6 col-span-10 flex flex-col gap-4">
         <div class="flex gap-2 items-center">
           <font-awesome-icon icon="grip-lines" class="text-2xl" />
@@ -235,9 +237,13 @@ export default defineComponent({
     });
     const scrollToSection = (id: string) => {
       const releventDiv = document.getElementById(id);
-      releventDiv?.scrollIntoView({ behavior: "smooth" });
+      releventDiv?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "center",
+      });
     };
-    const parentDivStyle = ref("grid grid-cols-12 md:grid-cols-6");
+    const parentDivStyle = ref("grid grid-cols-12 md:grid-cols-6 py-5");
 
     const navItems = ref([
       { name: "about", id: "summary" },
@@ -401,8 +407,7 @@ html {
 
 h1 {
   font-family: "PowerGroteskTrial-Bold", sans-serif;
-  font-size: 3rem;
-  line-height: 1;
+  @apply md:text-7xl text-5xl;
 }
 
 h2 {
