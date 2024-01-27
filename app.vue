@@ -60,8 +60,8 @@
           architectures, developing RESTful APIs, optimizing database systems,
           deploying applications to the cloud, and collaborating with teams to
           achieve project objectives. I am skilled in a range of programming
-          languages and frameworks, including Python, Java, Node.js, SQL, and
-          NoSQL databases.
+          languages and frameworks, including Python, Ruby, Java, Node.js, SQL,
+          and NoSQL databases.
         </p>
       </div>
     </div>
