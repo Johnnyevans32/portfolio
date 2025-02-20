@@ -177,8 +177,9 @@
                   :style="{ transform: 'rotate(315deg)' }"
                   class=""
                 />
+
+                * ({{ job.type }})
               </NuxtLink>
-              * ({{ job.type }})
             </div>
           </div>
 
