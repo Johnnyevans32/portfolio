@@ -346,7 +346,7 @@ export default defineComponent({
           "LTI",
         ],
         year: "2024 - Present",
-        type: "full-time",
+        type: "full time",
       },
       {
         title: "Senior Backend Engineer",
@@ -354,7 +354,7 @@ export default defineComponent({
         companySite: "https://bento.africa",
         technologies: ["payroll", "node-js", "psp integrations"],
         year: "2020 - 2024",
-        type: "full-time",
+        type: "full time",
       },
       {
         title: "Frontend Engineer",
@@ -370,7 +370,7 @@ export default defineComponent({
         companySite: "https://degx.typedream.app/",
         technologies: ["ethereum", "web3"],
         year: "2022 - 2023",
-        type: "side-project",
+        type: "side project",
       },
       {
         title: "Backend Engineer Intern",
