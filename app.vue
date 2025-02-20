@@ -53,15 +53,21 @@
       <div class="md:col-start-3 md:col-span-2 col-start-2 col-span-10">
         <h1 :style="underlineText">what i do</h1>
         <p>
-          as a <b :style="underlineText">software engineer</b> with a focus on
-          backend development, software architecture, and design, I bring a
-          unique set of skills to any project. I specialize in building backend
-          infrastructure, designing scalable and reliable software
-          architectures, developing RESTful APIs, optimizing database systems,
-          deploying applications to the cloud, and collaborating with teams to
-          achieve project objectives. I am skilled in a range of programming
-          languages and frameworks, including Python, Ruby, Java, Node.js, SQL,
-          and NoSQL databases.
+          as a <b :style="underlineText">software engineer</b> with over 5 years
+          of experience with a focus on backend development, software
+          architecture, and design, I bring a unique set of skills to any
+          project. I specialize in building backend infrastructure, designing
+          scalable and reliable software architectures, developing RESTful APIs,
+          optimizing database systems, deploying applications to the cloud, and
+          collaborating with teams to achieve project objectives. I am skilled
+          in a range of programming languages and frameworks. Here is the
+          overview. <br /><br />
+          <b :style="underlineText">Advanced skills:</b> Python, FastAPI,
+          Typescript, Javascript, Node.js, NestJs, VueJs, NuxtJS, Docker,
+          MongoDB, Web3 <br /><br />
+
+          <b :style="underlineText">Intermediate skills:</b> Java, React, SQL
+          databases, Kubernetes, Golang, Smart Contracts, Web5
         </p>
       </div>
     </div>
@@ -72,9 +78,11 @@
           <font-awesome-icon icon="grip-lines" class="text-2xl" />
           <h2>selected projects</h2>
         </div>
-        <div
+        <NuxtLink
           v-for="project in projects"
           :key="project.title"
+          :to="project.links[0].link"
+          target="_blank"
           class="flex justify-between items-center border-2 border-black p-4 cursor-pointer hover:bg-[#f80000] hover:text-white"
         >
           <div class="flex gap-4 items-center">
@@ -113,7 +121,7 @@
               {{ link.type === "app" ? "live" : "code" }}
             </a>
           </div>
-        </div>
+        </NuxtLink>
       </div>
     </div>
     <div :class="parentDivStyle" class="">
@@ -162,13 +170,14 @@
             <p class="w-14 md:w-28">{{ job.year }}</p>
             <div class="flex flex-col">
               <p>{{ job.title }}</p>
-              <a :href="job.companySite" target="_blank" class="text-xs">
+              <NuxtLink :to="job.companySite" target="_blank" class="text-xs">
                 {{ job.company }}
                 <font-awesome-icon
                   icon="arrow-right"
                   :style="{ transform: 'rotate(315deg)' }"
                   class=""
-              /></a>
+                />
+              </NuxtLink>
             </div>
           </div>
 
@@ -253,24 +262,46 @@ export default defineComponent({
 
     const projects = ref([
       {
+        title: "Multicash",
+        desc: "multi-currency digital wallet",
+        technologies: ["nuxt3", "web5", "tbdex", "wallet"],
+        links: [
+          { type: "app", link: "https://multicash.vercel.app/" },
+          { type: "code", link: "https://github.com/Johnnyevans32/MultiCash" },
+        ],
+        year: "2024",
+      },
+      {
         title: "Finsight AI",
-        desc: "decentralised wallet",
+        desc: "financial management dashboard",
         technologies: ["nuxt3", "web5", "ai"],
-        links: [{ type: "app", link: "https://aifinsight.vercel.app/" }],
+        links: [
+          { type: "app", link: "https://aifinsight.vercel.app/" },
+          { type: "code", link: "https://github.com/Johnnyevans32/AiFinsight" },
+        ],
         year: "2024",
       },
       {
         title: "Deg X",
         desc: "decentralised wallet",
         technologies: ["python", "web3"],
-        links: [{ type: "app", link: "https://deg-x-charlie.vercel.app/" }],
+        links: [
+          { type: "app", link: "https://deg-x-charlie.vercel.app/" },
+          { type: "code", link: "https://github.com/Johnnyevans32/deg-x-api" },
+        ],
         year: "2023",
       },
       {
         title: "Pool X",
         desc: "token staking protocol",
         technologies: ["python", "web3"],
-        links: [{ type: "app", link: "https://pool-x.netlify.app/" }],
+        links: [
+          { type: "app", link: "https://pool-x.netlify.app/" },
+          {
+            type: "code",
+            link: "https://github.com/Johnnyevans32/staking-erc-20",
+          },
+        ],
         year: "2023",
       },
     ]);
@@ -302,11 +333,25 @@ export default defineComponent({
 
     const jobs = ref([
       {
+        title: "Lead Software Engineer",
+        company: "Talesconnect",
+        companySite: "https://www.talesconnect.io",
+        technologies: [
+          "Vuejs",
+          "NodeJs",
+          "Mongodb",
+          "LMS Integration",
+          "Real-time Messaging",
+          "LTI",
+        ],
+        year: "2024 - Present",
+      },
+      {
         title: "Senior Backend Engineer",
         company: "Bento Africa",
         companySite: "https://bento.africa",
         technologies: ["payroll", "node-js", "psp integrations"],
-        year: "2020 - Present",
+        year: "2020 - 2024",
       },
       {
         title: "Frontend Engineer",
