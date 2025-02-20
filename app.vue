@@ -170,6 +170,7 @@
             <p class="w-14 md:w-28">{{ job.year }}</p>
             <div class="flex flex-col">
               <p>{{ job.title }}</p>
+              ({{ job.type }})
               <NuxtLink :to="job.companySite" target="_blank" class="text-xs">
                 {{ job.company }}
                 <font-awesome-icon
@@ -345,6 +346,7 @@ export default defineComponent({
           "LTI",
         ],
         year: "2024 - Present",
+        type: "full-time",
       },
       {
         title: "Senior Backend Engineer",
@@ -352,6 +354,7 @@ export default defineComponent({
         companySite: "https://bento.africa",
         technologies: ["payroll", "node-js", "psp integrations"],
         year: "2020 - 2024",
+        type: "full-time",
       },
       {
         title: "Frontend Engineer",
@@ -359,6 +362,7 @@ export default defineComponent({
         companySite: "https://www.dutch0x.io/",
         technologies: ["ethereum", "web3"],
         year: "2023 - 2023",
+        type: "contract",
       },
       {
         title: "Founder",
@@ -366,6 +370,7 @@ export default defineComponent({
         companySite: "https://degx.typedream.app/",
         technologies: ["ethereum", "web3"],
         year: "2022 - 2023",
+        type: "side-project",
       },
       {
         title: "Backend Engineer Intern",
@@ -373,6 +378,7 @@ export default defineComponent({
         companySite: "https://internship.zuri.team/",
         technologies: ["python", "APIs"],
         year: "2020 - 2020",
+        type: "internship",
       },
       {
         title: "Fullstack Engineer Intern",
@@ -380,6 +386,7 @@ export default defineComponent({
         companySite: "https://skysenx.com/",
         technologies: ["php", "MySql"],
         year: "2019 - 2020",
+        type: "internship",
       },
       {
         title: "Control Room Engineer Intern",
@@ -387,6 +394,7 @@ export default defineComponent({
         companySite: "https://radionigeria.gov.ng/",
         technologies: [],
         year: "2018 - 2019",
+        type: "internship",
       },
     ]);
 
