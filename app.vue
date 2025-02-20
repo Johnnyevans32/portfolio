@@ -170,7 +170,6 @@
             <p class="w-14 md:w-28">{{ job.year }}</p>
             <div class="flex flex-col">
               <p>{{ job.title }}</p>
-              ({{ job.type }})
               <NuxtLink :to="job.companySite" target="_blank" class="text-xs">
                 {{ job.company }}
                 <font-awesome-icon
@@ -179,6 +178,7 @@
                   class=""
                 />
               </NuxtLink>
+              * ({{ job.type }})
             </div>
           </div>
 
