@@ -370,7 +370,7 @@ export default defineComponent({
         companySite: "https://degx.typedream.app/",
         technologies: ["ethereum", "web3"],
         year: "2022 - 2023",
-        type: "side project",
+        type: "personal project",
       },
       {
         title: "Backend Engineer Intern",
