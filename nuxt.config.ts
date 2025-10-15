@@ -110,6 +110,15 @@ export default defineNuxtConfig({
       routes: ["/sitemap.xml", "/robots.txt"],
     },
   },
+  
+  // Route rules to serve static files properly
+  routeRules: {
+    "/robots.txt": { prerender: true, headers: { "Content-Type": "text/plain" } },
+    "/sitemap.xml": { prerender: true, headers: { "Content-Type": "application/xml" } },
+    "/site.webmanifest": { prerender: true, headers: { "Content-Type": "application/json" } },
+    "/favicon.ico": { prerender: true, headers: { "Content-Type": "image/x-icon" } },
+    "/pic.png": { prerender: true, headers: { "Content-Type": "image/png" } },
+  },
 
   css: [
     "~/assets/css/main.css",
