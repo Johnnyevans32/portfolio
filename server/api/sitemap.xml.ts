@@ -1,3 +1,5 @@
+import { setHeader } from 'h3'
+
 export default defineEventHandler(async (event) => {
   // Add static routes
   const routes = [
