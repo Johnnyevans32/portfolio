@@ -76,8 +76,8 @@ export default defineNuxtConfig({
         // Canonical URL
         {
           hid: "canonical",
-          rel: "canonical",
-          href: "https://0xjevan.vercel.app",
+          property: "canonical",
+          content: "https://0xjevan.vercel.app",
         },
 
         // Additional SEO
