@@ -1,31 +1,97 @@
 <template>
   <div class="grid">
-    <div
+    <!-- JSON-LD Structured Data -->
+    <Head>
+      <Script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "name": "Evans Eburu",
+          "alternateName": "0xjevan",
+          "jobTitle": "Software Engineer",
+          "description": "Software engineer with 6+ years experience specializing in backend development, scalable architectures, and modern web technologies.",
+          "url": "https://0xjevan.vercel.app",
+          "image": "https://0xjevan.vercel.app/pic.png",
+          "email": "evanseburu32@gmail.com",
+          "sameAs": [
+            "https://github.com/Johnnyevans32",
+            "https://linkedin.com/in/0xjevan",
+            "https://x.com/0xjevan",
+            "https://medium.com/@0xjevan"
+          ],
+          "knowsAbout": [
+            "Software Engineering",
+            "Backend Development",
+            "Python",
+            "FastAPI",
+            "Node.js",
+            "Vue.js",
+            "Nuxt.js",
+            "Web3",
+            "Blockchain Development",
+            "Database Design",
+            "API Development"
+          ],
+          "worksFor": {
+            "@type": "Organization",
+            "name": "Talesconnect",
+            "url": "https://www.talesconnect.io"
+          },
+          "alumniOf": {
+            "@type": "Organization",
+            "name": "Federal University of Technology Minna"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "NG",
+            "addressRegion": "Nigeria"
+          },
+          "nationality": {
+            "@type": "Country",
+            "name": "Nigeria"
+          }
+        }
+      </Script>
+    </Head>
+
+    <nav
       :class="parentDivStyle"
       class="items-center border-b-2 border-black md:text-3xl text-lg fixed bg-[#feed01] z-20"
+      role="navigation"
+      aria-label="Main navigation"
     >
-      <span class="col-start-2">0xjevan</span>
+      <span class="col-start-2" itemprop="alternateName">0xjevan</span>
 
       <div class="md:col-start-5 col-start-11 h-5 justify-self-end flex gap-2">
-        <span
+        <a
           v-for="item in navItems"
           :key="item.id"
           class="cursor-pointer hover:border-b-2 hover:border-[#f80000]"
           @click="() => scrollToSection(item.id)"
+          :href="`#${item.id}`"
+          :aria-label="`Navigate to ${item.name} section`"
         >
           {{ item.name }}
-        </span>
+        </a>
       </div>
-    </div>
+    </nav>
 
-    <div
+    <main
       :class="parentDivStyle"
       class="min-h-screen items-center md:pt-0 pt-24 gap-4 bg-[#feed01]"
+      itemscope
+      itemtype="https://schema.org/Person"
     >
       <div
         class="transform translate-y-[1vh] md:col-start-2 md:col-span-2 col-start-2 col-span-10"
       >
-        <img :src="`./pic.png`" class="h-[60vh]" alt="dp" />
+        <img 
+          :src="`./pic.png`" 
+          class="h-[60vh]" 
+          alt="Evans Eburu - Software Engineer Profile Picture" 
+          loading="lazy"
+          itemprop="image"
+        />
         <h1
           class="absolute bottom-1 -right-6 text-[#f80000] md:text-9xl text-6xl"
         >
@@ -35,25 +101,26 @@
       <div
         class="md:col-start-4 md:col-span-2 text-right col-start-2 col-span-10"
       >
-        <h1>Hello, I'm Evans Eburu.</h1>
-        <p>
-          i am a <b :style="underlineText">software engineer</b> based on earth!
+        <h1 itemprop="name">Hello, I'm Evans Eburu.</h1>
+        <p itemprop="description">
+          i am a <b :style="underlineText" itemprop="jobTitle">software engineer</b> based on earth!
           focused on building applications with scalable architectures. proud
           team player focused on achieving project objectives with speed and
           accuracy.
         </p>
       </div>
-    </div>
+    </main>
 
-    <div
+    <section
       :class="parentDivStyle"
       class="items-center py-10 text-white bg-black"
       id="summary"
+      aria-labelledby="summary-heading"
     >
       <div class="md:col-start-3 md:col-span-2 col-start-2 col-span-10">
-        <h1 :style="underlineText">what i do</h1>
+        <h2 id="summary-heading" :style="underlineText">what i do</h2>
         <p>
-          as a <b :style="underlineText">software engineer</b> with over 5 years
+          as a <b :style="underlineText">software engineer</b> with over 6 years
           of experience with a focus on backend development, software
           architecture, and design, I bring a unique set of skills to any
           project. I specialize in building backend infrastructure, designing
@@ -70,26 +137,26 @@
           databases, Kubernetes, Golang, Smart Contracts, Web5
         </p>
       </div>
-    </div>
+    </section>
 
-    <div :class="parentDivStyle" id="works">
+    <section :class="parentDivStyle" id="works" aria-labelledby="works-heading">
       <div class="col-start-2 md:col-end-6 col-span-10 flex flex-col gap-4">
         <div class="flex gap-2 items-center">
           <font-awesome-icon icon="grip-lines" class="text-2xl" />
-          <h2>selected projects</h2>
+          <h2 id="works-heading">selected projects</h2>
         </div>
-        <NuxtLink
+        <article
           v-for="project in projects"
           :key="project.title"
-          :to="project.links[0].link"
-          target="_blank"
           class="flex justify-between items-center border-2 border-black p-4 cursor-pointer hover:bg-[#f80000] hover:text-white"
+          itemscope
+          itemtype="https://schema.org/SoftwareSourceCode"
         >
           <div class="flex gap-4 items-center">
-            <p>{{ project.year }}</p>
+            <time :datetime="project.year" itemprop="dateCreated">{{ project.year }}</time>
             <div class="flex flex-col">
-              <p>{{ project.title }}</p>
-              <div class="flex gap-2">
+              <h3 itemprop="name">{{ project.title }}</h3>
+              <div class="flex gap-2" itemprop="programmingLanguage">
                 <span
                   v-for="tech in project.technologies"
                   :key="tech"
@@ -107,6 +174,9 @@
               :key="link.link"
               :href="link.link"
               target="_blank"
+              rel="noopener noreferrer"
+              :aria-label="`${link.type === 'app' ? 'View live' : 'View code'} for ${project.title}`"
+              itemprop="url"
             >
               <font-awesome-icon
                 v-if="link.type === 'app'"
@@ -121,68 +191,78 @@
               {{ link.type === "app" ? "live" : "code" }}
             </a>
           </div>
-        </NuxtLink>
+        </article>
       </div>
-    </div>
-    <div :class="parentDivStyle" class="">
+    </section>
+    <section :class="parentDivStyle" aria-labelledby="articles-heading">
       <div class="col-start-2 md:col-end-6 col-span-10 flex flex-col gap-4">
         <div class="flex gap-2 items-center">
           <font-awesome-icon icon="grip-lines" class="text-2xl" />
-          <h2>articles</h2>
+          <h2 id="articles-heading">articles</h2>
         </div>
-        <NuxtLink
+        <article
           v-for="article in articles"
           :key="article.title"
-          :to="article.link"
-          target="_blank"
           class="flex items-center border-2 border-black p-4 cursor-pointer hover:bg-[#f80000] hover:text-white"
+          itemscope
+          itemtype="https://schema.org/Article"
         >
           <div class="flex gap-4 items-center w-full">
-            <p class="w-14 md:w-28">{{ article.date }}</p>
+            <time :datetime="article.date" class="w-14 md:w-28" itemprop="datePublished">{{ article.date }}</time>
             <div class="flex flex-col w-full">
-              <p class="">{{ article.title }}</p>
-              <p class="text-xs">#{{ article.category }}</p>
+              <h3 itemprop="headline">{{ article.title }}</h3>
+              <p class="text-xs" itemprop="articleSection">#{{ article.category }}</p>
             </div>
           </div>
 
           <span class="flex items-center gap-1 justify-end">
             <font-awesome-icon icon="clock" class="text-xs" />
-            <p class="truncate">
+            <time :datetime="`PT${article.readDuration.replace(' min read', '')}M`" class="truncate" itemprop="timeRequired">
               {{ article.readDuration }}
-            </p>
+            </time>
           </span>
-        </NuxtLink>
+        </article>
       </div>
-    </div>
+    </section>
 
-    <div :class="parentDivStyle">
+    <section :class="parentDivStyle" aria-labelledby="work-history-heading">
       <div class="col-start-2 md:col-end-6 col-span-10 flex flex-col gap-4">
         <div class="flex gap-2 items-center">
           <font-awesome-icon icon="grip-lines" class="text-2xl" />
-          <h2>work history</h2>
+          <h2 id="work-history-heading">work history</h2>
         </div>
-        <div
+        <article
           v-for="job in jobs"
           :key="job.company"
           class="flex justify-between items-center border-2 border-black p-4 hover:bg-[#f80000] hover:text-white"
+          itemscope
+          itemtype="https://schema.org/OrganizationRole"
         >
           <div class="flex gap-4 items-center">
-            <p class="w-14 md:w-28">{{ job.year }}</p>
+            <time :datetime="job.year" class="w-14 md:w-28" itemprop="startDate">{{ job.year }}</time>
             <div class="flex flex-col">
-              <p>{{ job.title }}</p>
-              <NuxtLink :to="job.companySite" target="_blank" class="text-xs">
-                {{ job.company }}
+              <h3 itemprop="roleName">{{ job.title }}</h3>
+              <a 
+                :href="job.companySite" 
+                target="_blank" 
+                class="text-xs"
+                rel="noopener noreferrer"
+                itemprop="memberOf"
+                itemscope
+                itemtype="https://schema.org/Organization"
+              >
+                <span itemprop="name">{{ job.company }}</span>
                 <font-awesome-icon
                   icon="arrow-right"
                   :style="{ transform: 'rotate(315deg)' }"
                   class=""
                 />
                 ({{ job.type }})
-              </NuxtLink>
+              </a>
             </div>
           </div>
 
-          <div class="gap-2 md:flex hidden">
+          <div class="gap-2 md:flex hidden" itemprop="skills">
             <span
               v-for="tech in job.technologies"
               :key="tech"
@@ -190,16 +270,17 @@
               >{{ tech }}</span
             >
           </div>
-        </div>
+        </article>
       </div>
-    </div>
+    </section>
 
-    <div
+    <footer
       :class="parentDivStyle"
       class="py-10 gap-4 rounded-t-2xl bg-black text-white"
       id="contact"
+      role="contentinfo"
     >
-      <h1 class="col-start-2">contacts</h1>
+      <h2 class="col-start-2" id="contact-heading">contacts</h2>
       <div class="col-start-2 flex flex-col gap-4">
         <a
           class="flex items-center gap-1"
@@ -207,6 +288,9 @@
           :key="social.name"
           :href="social.link"
           target="_blank"
+          rel="noopener noreferrer"
+          :aria-label="`Visit my ${social.name} profile`"
+          itemprop="sameAs"
         >
           <font-awesome-icon :icon="social.icon" class="text-xs" />
           {{ social.name }}
@@ -214,14 +298,15 @@
             icon="arrow-right"
             :style="{ transform: 'rotate(315deg)' }"
             class="text-xs"
-          />
-        </a>
+        /></a>
       </div>
       <div class="md:col-start-5 col-start-11 justify-self-end">
         <a
           href="https://t.ly/MqlDf"
           target="_blank"
+          rel="noopener noreferrer"
           class="flex items-center gap-1"
+          aria-label="Download my resume"
         >
           <font-awesome-icon icon="file" class="text-xs" />resume
           <font-awesome-icon
@@ -231,8 +316,8 @@
         /></a>
       </div>
 
-      <p class="col-span-12 md:col-span-6 text-center">&copy; 2024 0xjevan</p>
-    </div>
+      <p class="col-span-12 md:col-span-6 text-center" itemprop="copyrightNotice">&copy; 2024 0xjevan</p>
+    </footer>
   </div>
 </template>
 
@@ -262,6 +347,16 @@ export default defineComponent({
     ]);
 
     const projects = ref([
+      {
+        title: "Goals & Actions",
+        desc: "AI-powered personal and professional goals management",
+        technologies: ["nextjs", "nodejs", "postgresql", "ai", "ci/cd"],
+        links: [
+          { type: "app", link: "https://goalsnactions.vercel.app/" },
+          { type: "code", link: "https://github.com/Johnnyevans32/goals" },
+        ],
+        year: "2024",
+      },
       {
         title: "Multicash",
         desc: "multi-currency digital wallet",

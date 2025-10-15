@@ -1,0 +1,18 @@
+{
+  "name": "Evans Eburu - Software Engineer Portfolio",
+  "short_name": "Evans Eburu",
+  "description": "Software engineer with 6+ years experience specializing in backend development, scalable architectures, and modern web technologies.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#feed01",
+  "theme_color": "#feed01",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["portfolio", "developer", "software-engineer"],
+  "lang": "en"
+}
