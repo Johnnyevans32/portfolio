@@ -1,6 +1,9 @@
 {
   "name": "0xjevan",
   "private": true,
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
