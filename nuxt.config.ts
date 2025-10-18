@@ -1,5 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { SITE_CONFIG, META_TAGS } from './config/seo.config'
+import { SITE_CONFIG, META_TAGS } from "./config/seo.config";
 
 export default defineNuxtConfig({
   app: {
@@ -12,7 +12,7 @@ export default defineNuxtConfig({
       meta: [
         // Default meta tags
         ...META_TAGS.default,
-        
+
         // SEO Meta Tags
         {
           hid: "description",
@@ -21,7 +21,7 @@ export default defineNuxtConfig({
         },
         {
           name: "keywords",
-          content: SITE_CONFIG.seo.keywords.join(', '),
+          content: SITE_CONFIG.seo.keywords.join(", "),
         },
         { name: "author", content: SITE_CONFIG.seo.author },
 
@@ -58,10 +58,10 @@ export default defineNuxtConfig({
           content: SITE_CONFIG.hostname,
         },
 
-        // Google Search Console Verification (replace with your actual verification code)
+        // Google Search Console Verification
         {
           name: "google-site-verification",
-          content: "YOUR_GOOGLE_VERIFICATION_CODE",
+          content: "FprLCez8MNU_i4Sndn0Z7pbkdUrUJvVFzQKVQ2UNqzM",
         },
         { name: "msvalidate.01", content: "YOUR_BING_VERIFICATION_CODE" },
       ],
@@ -73,10 +73,10 @@ export default defineNuxtConfig({
       script: [
         // Structured data (JSON-LD)
         {
-          type: 'application/ld+json',
-          children: JSON.stringify(META_TAGS.jsonLd)
-        }
-      ]
+          type: "application/ld+json",
+          children: JSON.stringify(META_TAGS.jsonLd),
+        },
+      ],
     },
   },
 
