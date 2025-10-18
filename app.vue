@@ -3,54 +3,23 @@
     <!-- JSON-LD Structured Data -->
     <Head>
       <Script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "Person",
-          "name": "Evans Eburu",
-          "alternateName": "0xjevan",
-          "jobTitle": "Software Engineer",
-          "description": "Software engineer with 6+ years experience specializing in backend development, scalable architectures, and modern web technologies.",
-          "url": "https://0xjevan.vercel.app",
-          "image": "https://0xjevan.vercel.app/pic.png",
-          "email": "evanseburu32@gmail.com",
-          "sameAs": [
-            "https://github.com/Johnnyevans32",
-            "https://linkedin.com/in/0xjevan",
-            "https://x.com/0xjevan",
-            "https://medium.com/@0xjevan"
-          ],
-          "knowsAbout": [
-            "Software Engineering",
-            "Backend Development",
-            "Python",
-            "FastAPI",
-            "Node.js",
-            "Vue.js",
-            "Nuxt.js",
-            "Web3",
-            "Blockchain Development",
-            "Database Design",
-            "API Development"
-          ],
-          "worksFor": {
-            "@type": "Organization",
-            "name": "Talesconnect",
-            "url": "https://www.talesconnect.io"
-          },
-          "alumniOf": {
-            "@type": "Organization",
-            "name": "Federal University of Technology Minna"
-          },
-          "address": {
-            "@type": "PostalAddress",
-            "addressCountry": "NG",
-            "addressRegion": "Nigeria"
-          },
-          "nationality": {
-            "@type": "Country",
-            "name": "Nigeria"
-          }
-        }
+        { "@context": "https://schema.org", "@type": "Person", "name": "Evans
+        Eburu", "alternateName": "0xjevan", "jobTitle": "Software Engineer",
+        "description": "Software engineer with 6+ years experience specializing
+        in backend development, scalable architectures, and modern web
+        technologies.", "url": "https://0xjevan.vercel.app", "image":
+        "https://0xjevan.vercel.app/pic.png", "email": "evanseburu32@gmail.com",
+        "sameAs": [ "https://github.com/Johnnyevans32",
+        "https://linkedin.com/in/0xjevan", "https://x.com/0xjevan",
+        "https://medium.com/@0xjevan" ], "knowsAbout": [ "Software Engineering",
+        "Backend Development", "Python", "FastAPI", "Node.js", "Vue.js",
+        "Nuxt.js", "Web3", "Blockchain Development", "Database Design", "API
+        Development" ], "worksFor": { "@type": "Organization", "name":
+        "Talesconnect", "url": "https://www.talesconnect.io" }, "alumniOf": {
+        "@type": "Organization", "name": "Federal University of Technology
+        Owerri" }, "address": { "@type": "PostalAddress", "addressCountry":
+        "NG", "addressRegion": "Nigeria" }, "nationality": { "@type": "Country",
+        "name": "Nigeria" } }
       </Script>
     </Head>
 
@@ -85,10 +54,10 @@
       <div
         class="transform translate-y-[1vh] md:col-start-2 md:col-span-2 col-start-2 col-span-10"
       >
-        <img 
-          :src="`./pic.png`" 
-          class="h-[60vh]" 
-          alt="Evans Eburu - Software Engineer Profile Picture" 
+        <img
+          :src="`./pic.png`"
+          class="h-[60vh]"
+          alt="Evans Eburu - Software Engineer Profile Picture"
           loading="lazy"
           itemprop="image"
         />
@@ -103,10 +72,11 @@
       >
         <h1 itemprop="name">Hello, I'm Evans Eburu.</h1>
         <p itemprop="description">
-          i am a <b :style="underlineText" itemprop="jobTitle">software engineer</b> based on earth!
-          focused on building applications with scalable architectures. proud
-          team player focused on achieving project objectives with speed and
-          accuracy.
+          i am a
+          <b :style="underlineText" itemprop="jobTitle">software engineer</b>
+          based on earth! focused on building applications with scalable
+          architectures. proud team player focused on achieving project
+          objectives with speed and accuracy.
         </p>
       </div>
     </main>
@@ -153,7 +123,9 @@
           itemtype="https://schema.org/SoftwareSourceCode"
         >
           <div class="flex gap-4 items-center">
-            <time :datetime="project.year" itemprop="dateCreated">{{ project.year }}</time>
+            <time :datetime="project.year" itemprop="dateCreated">{{
+              project.year
+            }}</time>
             <div class="flex flex-col">
               <h3 itemprop="name">{{ project.title }}</h3>
               <div class="flex gap-2" itemprop="programmingLanguage">
@@ -175,7 +147,9 @@
               :href="link.link"
               target="_blank"
               rel="noopener noreferrer"
-              :aria-label="`${link.type === 'app' ? 'View live' : 'View code'} for ${project.title}`"
+              :aria-label="`${
+                link.type === 'app' ? 'View live' : 'View code'
+              } for ${project.title}`"
               itemprop="url"
             >
               <font-awesome-icon
@@ -208,16 +182,27 @@
           itemtype="https://schema.org/Article"
         >
           <div class="flex gap-4 items-center w-full">
-            <time :datetime="article.date" class="w-14 md:w-28" itemprop="datePublished">{{ article.date }}</time>
+            <time
+              :datetime="article.date"
+              class="w-14 md:w-28"
+              itemprop="datePublished"
+              >{{ article.date }}</time
+            >
             <div class="flex flex-col w-full">
               <h3 itemprop="headline">{{ article.title }}</h3>
-              <p class="text-xs" itemprop="articleSection">#{{ article.category }}</p>
+              <p class="text-xs" itemprop="articleSection">
+                #{{ article.category }}
+              </p>
             </div>
           </div>
 
           <span class="flex items-center gap-1 justify-end">
             <font-awesome-icon icon="clock" class="text-xs" />
-            <time :datetime="`PT${article.readDuration.replace(' min read', '')}M`" class="truncate" itemprop="timeRequired">
+            <time
+              :datetime="`PT${article.readDuration.replace(' min read', '')}M`"
+              class="truncate"
+              itemprop="timeRequired"
+            >
               {{ article.readDuration }}
             </time>
           </span>
@@ -239,12 +224,17 @@
           itemtype="https://schema.org/OrganizationRole"
         >
           <div class="flex gap-4 items-center">
-            <time :datetime="job.year" class="w-14 md:w-28" itemprop="startDate">{{ job.year }}</time>
+            <time
+              :datetime="job.year"
+              class="w-14 md:w-28"
+              itemprop="startDate"
+              >{{ job.year }}</time
+            >
             <div class="flex flex-col">
               <h3 itemprop="roleName">{{ job.title }}</h3>
-              <a 
-                :href="job.companySite" 
-                target="_blank" 
+              <a
+                :href="job.companySite"
+                target="_blank"
                 class="text-xs"
                 rel="noopener noreferrer"
                 itemprop="memberOf"
@@ -316,7 +306,12 @@
         /></a>
       </div>
 
-      <p class="col-span-12 md:col-span-6 text-center" itemprop="copyrightNotice">&copy; 2024 0xjevan</p>
+      <p
+        class="col-span-12 md:col-span-6 text-center"
+        itemprop="copyrightNotice"
+      >
+        &copy; 2024 0xjevan
+      </p>
     </footer>
   </div>
 </template>
@@ -429,6 +424,20 @@ export default defineComponent({
 
     const jobs = ref([
       {
+        title: "Senior Backend Engineer",
+        company: "Autospend",
+        companySite: "https://www.autospend.ai",
+        technologies: [
+          "Stablecoins",
+          "NestJS",
+          "PostgreSQL",
+          "Blockchain",
+          "AWS",
+        ],
+        year: "2025 - Present",
+        type: "full time",
+      },
+      {
         title: "Lead Software Engineer",
         company: "Talesconnect",
         companySite: "https://www.talesconnect.io",
@@ -440,7 +449,7 @@ export default defineComponent({
           "Real-time Messaging",
           "LTI",
         ],
-        year: "2024 - Present",
+        year: "2024 - October 2025",
         type: "full time",
       },
       {
