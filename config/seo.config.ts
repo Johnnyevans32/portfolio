@@ -84,27 +84,12 @@ export const SITE_CONFIG = {
 
 // Sitemap routes configuration
 export const SITEMAP_ROUTES = [
-  // Main pages
+  // Main pages - only canonical URLs (no anchor links)
   {
     url: "/",
     priority: 1.0,
     changefreq: "weekly",
     lastmod: new Date().toISOString().split("T")[0],
-  },
-  {
-    url: "#summary",
-    priority: 0.8,
-    changefreq: "monthly",
-  },
-  {
-    url: "#works",
-    priority: 0.9,
-    changefreq: "weekly",
-  },
-  {
-    url: "#contact",
-    priority: 0.7,
-    changefreq: "monthly",
   },
 ];
 
