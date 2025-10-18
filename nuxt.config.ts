@@ -1,92 +1,62 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { SITE_CONFIG, META_TAGS } from './config/seo.config'
+
 export default defineNuxtConfig({
   app: {
     head: {
-      titleTemplate: "%s - Evans Eburu | Software Engineer",
-      title: "Evans Eburu | Software Engineer Portfolio",
+      titleTemplate: SITE_CONFIG.seo.titleTemplate,
+      title: SITE_CONFIG.seo.defaultTitle,
       htmlAttrs: {
-        lang: "en",
+        lang: SITE_CONFIG.seo.language,
       },
       meta: [
-        { charset: "utf-8" },
-        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        // Default meta tags
+        ...META_TAGS.default,
+        
+        // SEO Meta Tags
         {
           hid: "description",
           name: "description",
-          content:
-            "Evans Eburu is a software engineer with 6+ years experience specializing in backend development, scalable architectures, and modern web technologies. Based in Nigeria, building innovative solutions.",
+          content: SITE_CONFIG.seo.defaultDescription,
         },
-        { name: "format-detection", content: "telephone=no" },
-
-        // SEO Meta Tags
         {
           name: "keywords",
-          content:
-            "Evans Eburu, software engineer, backend developer, fullstack developer, Python, FastAPI, Node.js, Vue.js, Nuxt.js, web3, blockchain developer, Nigeria, 0xjevan",
+          content: SITE_CONFIG.seo.keywords.join(', '),
         },
-        { name: "author", content: "Evans Eburu" },
-        { name: "robots", content: "index, follow" },
-        { name: "googlebot", content: "index, follow" },
-        { name: "bingbot", content: "index, follow" },
+        { name: "author", content: SITE_CONFIG.seo.author },
 
         // Open Graph Meta Tags
-        { property: "og:type", content: "website" },
+        ...META_TAGS.openGraph,
+        {
+          property: "og:url",
+          content: SITE_CONFIG.hostname,
+        },
         {
           property: "og:title",
-          content: "Evans Eburu | Software Engineer Portfolio",
+          content: SITE_CONFIG.seo.defaultTitle,
         },
         {
           property: "og:description",
-          content:
-            "Software engineer with 6+ years experience specializing in backend development, scalable architectures, and modern web technologies.",
+          content: SITE_CONFIG.seo.defaultDescription,
         },
-        { property: "og:url", content: "https://0xjevan.vercel.app" },
-        { property: "og:site_name", content: "Evans Eburu Portfolio" },
-        { property: "og:locale", content: "en_US" },
-        { property: "og:image", content: "https://0xjevan.vercel.app/pic.png" },
-        {
-          property: "og:image:alt",
-          content: "Evans Eburu - Software Engineer",
-        },
-        { property: "og:image:width", content: "1200" },
-        { property: "og:image:height", content: "630" },
 
         // Twitter Card Meta Tags
-        { name: "twitter:card", content: "summary_large_image" },
+        ...META_TAGS.twitter,
         {
           name: "twitter:title",
-          content: "Evans Eburu | Software Engineer Portfolio",
+          content: SITE_CONFIG.seo.defaultTitle,
         },
         {
           name: "twitter:description",
-          content:
-            "Software engineer with 6+ years experience specializing in backend development, scalable architectures, and modern web technologies.",
+          content: SITE_CONFIG.seo.defaultDescription,
         },
-        {
-          name: "twitter:image",
-          content: "https://0xjevan.vercel.app/pic.png",
-        },
-        {
-          name: "twitter:image:alt",
-          content: "Evans Eburu - Software Engineer",
-        },
-        { name: "twitter:site", content: "@0xjevan" },
-        { name: "twitter:creator", content: "@0xjevan" },
 
         // Canonical URL
         {
           hid: "canonical",
           property: "canonical",
-          content: "https://0xjevan.vercel.app",
+          content: SITE_CONFIG.hostname,
         },
-
-        // Additional SEO
-        { name: "revisit-after", content: "7 days" },
-        { name: "distribution", content: "global" },
-        { name: "rating", content: "general" },
-        { name: "theme-color", content: "#feed01" },
-        { name: "msapplication-TileColor", content: "#feed01" },
-        { name: "msapplication-TileImage", content: "/favicon.ico" },
 
         // Google Search Console Verification (replace with your actual verification code)
         {
@@ -100,6 +70,13 @@ export default defineNuxtConfig({
         { rel: "apple-touch-icon", sizes: "180x180", href: "/favicon.ico" },
         { rel: "manifest", href: "/site.webmanifest" },
       ],
+      script: [
+        // Structured data (JSON-LD)
+        {
+          type: 'application/ld+json',
+          children: JSON.stringify(META_TAGS.jsonLd)
+        }
+      ]
     },
   },
 
