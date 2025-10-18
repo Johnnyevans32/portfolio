@@ -2,6 +2,9 @@
   <div class="grid">
     <!-- JSON-LD Structured Data -->
     <Head>
+      <!-- Google Search Console Verification -->
+      <meta name="google-site-verification" content="FprLCez8MNU_i4Sndn0Z7pbkdUrUJvVFzQKVQ2UNqzM" />
+      
       <Script type="application/ld+json">
         { "@context": "https://schema.org", "@type": "Person", "name": "Evans
         Eburu", "alternateName": "0xjevan", "jobTitle": "Software Engineer",
