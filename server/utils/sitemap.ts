@@ -34,8 +34,15 @@ export function generateRoutes(config: SitemapConfig): SitemapRoute[] {
     })
   })
   
-  // Note: External URLs removed to prevent Google Search Console issues
-  // Only include canonical URLs from your own domain
+  // Add external URLs
+  EXTERNAL_URLS.forEach(url => {
+    routes.push({
+      loc: url.url,
+      lastmod: url.lastmod || config.defaults.lastmod,
+      changefreq: url.changefreq as SitemapRoute['changefreq'],
+      priority: url.priority
+    })
+  })
   
   return routes
 }

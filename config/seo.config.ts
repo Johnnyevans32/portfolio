@@ -84,12 +84,27 @@ export const SITE_CONFIG = {
 
 // Sitemap routes configuration
 export const SITEMAP_ROUTES = [
-  // Main pages - only canonical URLs (no anchor links)
+  // Main pages
   {
     url: "/",
     priority: 1.0,
     changefreq: "weekly",
     lastmod: new Date().toISOString().split("T")[0],
+  },
+  {
+    url: "#summary",
+    priority: 0.8,
+    changefreq: "monthly",
+  },
+  {
+    url: "#works",
+    priority: 0.9,
+    changefreq: "weekly",
+  },
+  {
+    url: "#contact",
+    priority: 0.7,
+    changefreq: "monthly",
   },
 ];
 
@@ -102,12 +117,21 @@ export const EXTERNAL_URLS = [
     changefreq: "weekly",
   },
   {
-    url: "https://linkedin.com/in/0xjevan",
+    url: "https://www.linkedin.com/in/0xjevan",
     priority: 0.5,
     changefreq: "weekly",
   },
-  { url: "https://x.com/0xjevan", priority: 0.5, changefreq: "weekly" },
-  { url: "https://medium.com/@0xjevan", priority: 0.5, changefreq: "weekly" },
+  {
+    url: "https://x.com/0xjevan",
+    priority: 0.5,
+    changefreq: "weekly",
+    lastmod: new Date().toISOString().split("T")[0],
+  },
+  {
+    url: "https://medium.com/@0xjevan",
+    priority: 0.5,
+    changefreq: "weekly",
+  },
 ];
 
 // Meta tags configuration
@@ -200,7 +224,7 @@ export const META_TAGS = {
     },
     sameAs: [
       "https://github.com/Johnnyevans32",
-      "https://linkedin.com/in/0xjevan",
+      "https://www.linkedin.com/in/0xjevan",
       "https://x.com/0xjevan",
       "https://medium.com/@0xjevan",
     ],

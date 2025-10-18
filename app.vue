@@ -11,7 +11,7 @@
         technologies.", "url": "https://0xjevan.vercel.app", "image":
         "https://0xjevan.vercel.app/pic.png", "email": "evanseburu32@gmail.com",
         "sameAs": [ "https://github.com/Johnnyevans32",
-        "https://linkedin.com/in/0xjevan", "https://x.com/0xjevan",
+        "https://www.linkedin.com/in/0xjevan", "https://x.com/0xjevan",
         "https://medium.com/@0xjevan" ], "knowsAbout": [ "Software Engineering",
         "Backend Development", "Python", "FastAPI", "Node.js", "Vue.js",
         "Nuxt.js", "Web3", "Blockchain Development", "Database Design", "API
@@ -510,7 +510,7 @@ export default defineComponent({
         name: "x",
       },
       {
-        link: "https://linkedin.com/in/0xjevan",
+        link: "https://www.linkedin.com/in/0xjevan",
         icon: "fa-brands fa-linkedin",
         name: "linkedin",
       },
