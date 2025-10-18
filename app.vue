@@ -292,7 +292,7 @@
       </div>
       <div class="md:col-start-5 col-start-11 justify-self-end">
         <a
-          href="https://t.ly/MqlDf"
+          href="https://drive.google.com/file/d/1mU3oFcp1M7Msj-RIPKST_KDVS4r_qc6j/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           class="flex items-center gap-1"
