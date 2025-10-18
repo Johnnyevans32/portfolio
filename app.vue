@@ -1,28 +1,5 @@
 <template>
   <div class="grid">
-    <!-- JSON-LD Structured Data -->
-    <Head>
-      <!-- Google Search Console Verification -->
-      <Script type="application/ld+json">
-        { "@context": "https://schema.org", "@type": "Person", "name": "Evans
-        Eburu", "alternateName": "0xjevan", "jobTitle": "Software Engineer",
-        "description": "Software engineer with 6+ years experience specializing
-        in backend development, scalable architectures, and modern web
-        technologies.", "url": "https://0xjevan.vercel.app", "image":
-        "https://0xjevan.vercel.app/pic.png", "email": "evanseburu32@gmail.com",
-        "sameAs": [ "https://github.com/Johnnyevans32",
-        "https://www.linkedin.com/in/0xjevan", "https://x.com/0xjevan",
-        "https://medium.com/@0xjevan" ], "knowsAbout": [ "Software Engineering",
-        "Backend Development", "Python", "FastAPI", "Node.js", "Vue.js",
-        "Nuxt.js", "Web3", "Blockchain Development", "Database Design", "API
-        Development" ], "worksFor": { "@type": "Organization", "name":
-        "Talesconnect", "url": "https://www.talesconnect.io" }, "alumniOf": {
-        "@type": "Organization", "name": "Federal University of Technology
-        Owerri" }, "address": { "@type": "PostalAddress", "addressCountry":
-        "NG", "addressRegion": "Nigeria" }, "nationality": { "@type": "Country",
-        "name": "Nigeria" } }
-      </Script>
-    </Head>
 
     <nav
       :class="parentDivStyle"
