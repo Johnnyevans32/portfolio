@@ -4,8 +4,8 @@
   "description": "Software engineer with 6+ years experience specializing in backend development, scalable architectures, and modern web technologies.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#feed01",
-  "theme_color": "#feed01",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
   "icons": [
     {
       "src": "/favicon.ico",

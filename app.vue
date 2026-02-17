@@ -2,7 +2,7 @@
   <div class="grid">
     <nav
       :class="parentDivStyle"
-      class="items-center border-b-2 border-black md:text-3xl text-lg fixed bg-[#feed01] z-20"
+      class="items-center border-b-2 border-black md:text-3xl text-lg fixed bg-white z-20"
       role="navigation"
       aria-label="Main navigation"
     >
@@ -12,7 +12,7 @@
         <a
           v-for="item in navItems"
           :key="item.id"
-          class="cursor-pointer hover:border-b-2 hover:border-[#f80000]"
+          class="cursor-pointer hover:border-b-2 hover:border-black"
           @click="() => scrollToSection(item.id)"
           :href="`#${item.id}`"
           :aria-label="`Navigate to ${item.name} section`"
@@ -24,7 +24,7 @@
 
     <main
       :class="parentDivStyle"
-      class="min-h-screen items-center md:pt-0 pt-24 gap-4 bg-[#feed01]"
+      class="min-h-screen items-center md:pt-0 pt-24 gap-4 bg-white"
       itemscope
       itemtype="https://schema.org/Person"
     >
@@ -32,15 +32,13 @@
         class="transform translate-y-[1vh] md:col-start-2 md:col-span-2 col-start-2 col-span-10"
       >
         <img
-          :src="`./evans.JPG`"
+          :src="`/evans.JPG`"
           class="h-[60vh] object-cover"
           alt="Evans Eburu - Software Engineer Profile Picture"
           loading="lazy"
           itemprop="image"
         />
-        <h1
-          class="absolute bottom-1 -right-6 text-[#f80000] md:text-9xl text-6xl"
-        >
+        <h1 class="absolute bottom-1 -right-6 text-black md:text-9xl text-6xl">
           portfolio
         </h1>
       </div>
@@ -95,7 +93,7 @@
         <article
           v-for="project in projects"
           :key="project.title"
-          class="flex justify-between items-center border-2 border-black p-4 cursor-pointer hover:bg-[#f80000] hover:text-white"
+          class="flex justify-between items-center border-2 border-black p-4 cursor-pointer hover:bg-black hover:text-white"
           itemscope
           itemtype="https://schema.org/SoftwareSourceCode"
         >
@@ -154,9 +152,10 @@
         <article
           v-for="article in articles"
           :key="article.title"
-          class="flex items-center border-2 border-black p-4 cursor-pointer hover:bg-[#f80000] hover:text-white"
+          class="flex items-center border-2 border-black p-4 cursor-pointer hover:bg-black hover:text-white"
           itemscope
           itemtype="https://schema.org/Article"
+          @click="openArticle(article.link)"
         >
           <div class="flex gap-4 items-center w-full">
             <time
@@ -196,7 +195,7 @@
         <article
           v-for="job in jobs"
           :key="job.company"
-          class="flex justify-between items-center border-2 border-black p-4 hover:bg-[#f80000] hover:text-white"
+          class="flex justify-between items-center border-2 border-black p-4 hover:bg-black hover:text-white"
           itemscope
           itemtype="https://schema.org/OrganizationRole"
         >
@@ -290,6 +289,57 @@
         &copy; 2024 0xjevan
       </p>
     </footer>
+
+    <!-- Article Modal -->
+    <div
+      v-if="isModalOpen"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4"
+      @click.self="closeModal"
+    >
+      <div
+        class="bg-white w-full h-[90vh] max-w-6xl rounded-lg flex flex-col overflow-hidden relative shadow-2xl"
+      >
+        <div
+          class="flex justify-between items-center p-4 border-b-2 border-black bg-white"
+        >
+          <h3 class="font-bold text-lg truncate pr-4">Reading Article</h3>
+          <div class="flex gap-2 shrink-0">
+            <a
+              :href="currentArticleUrl"
+              target="_blank"
+              class="px-4 py-2 border-2 border-black hover:bg-black hover:text-white transition-colors text-sm font-bold flex items-center gap-2"
+            >
+              Open Original <font-awesome-icon icon="external-link-alt" />
+            </a>
+            <button
+              @click="closeModal"
+              class="px-4 py-2 bg-black text-white border-2 border-black hover:bg-white hover:text-black transition-colors text-sm font-bold"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+        <div class="flex-grow w-full relative bg-gray-50">
+          <div
+            class="absolute inset-0 flex items-center justify-center text-gray-500 z-0"
+          >
+            <div class="text-center p-8">
+              <p class="mb-2">Loading content...</p>
+              <p class="text-xs">
+                If content doesn't load, it may be blocked by the source site.
+                <br />Please use the "Open Original" button above.
+              </p>
+            </div>
+          </div>
+          <iframe
+            :src="currentArticleUrl"
+            class="w-full h-full border-0 relative z-10 bg-white"
+            title="Article content"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -300,7 +350,7 @@ export default defineComponent({
   setup() {
     const underlineText = ref({
       "text-decoration-line": "underline",
-      "text-decoration-color": "#f80000",
+      "text-decoration-color": "#000000",
     });
     const scrollToSection = (id: string) => {
       const releventDiv = document.getElementById(id);
@@ -317,6 +367,19 @@ export default defineComponent({
       { name: "works", id: "works" },
       { name: "contacts", id: "contact" },
     ]);
+
+    const isModalOpen = ref(false);
+    const currentArticleUrl = ref("");
+
+    const openArticle = (url: string) => {
+      currentArticleUrl.value = url;
+      isModalOpen.value = true;
+    };
+
+    const closeModal = () => {
+      isModalOpen.value = false;
+      currentArticleUrl.value = "";
+    };
 
     const projects = ref([
       {
@@ -516,6 +579,10 @@ export default defineComponent({
       articles,
       parentDivStyle,
       scrollToSection,
+      isModalOpen,
+      currentArticleUrl,
+      openArticle,
+      closeModal,
     };
   },
 });
