@@ -170,7 +170,7 @@ export const META_TAGS = {
       content:
         "Evans Eburu is a software engineer with 6+ years of experience specializing in backend development, Python, FastAPI, Node.js, Vue.js, and blockchain technologies.",
     },
-    { property: "og:image", content: "https://0xjevan.vercel.app/pic.png" },
+    { property: "og:image", content: "https://0xjevan.vercel.app/evans.JPG" },
     { property: "og:image:width", content: "1200" },
     { property: "og:image:height", content: "630" },
     { property: "og:image:alt", content: "Evans Eburu - Software Engineer" },
@@ -191,7 +191,7 @@ export const META_TAGS = {
       content:
         "Software engineer with 6+ years experience in backend development, Python, Node.js, Vue.js, and blockchain technologies.",
     },
-    { name: "twitter:image", content: "https://0xjevan.vercel.app/pic.png" },
+    { name: "twitter:image", content: "https://0xjevan.vercel.app/evans.JPG" },
     {
       name: "twitter:image:alt",
       content: "Evans Eburu - Software Engineer Portfolio",
@@ -210,7 +210,7 @@ export const META_TAGS = {
     description:
       "Software engineer with 6+ years of experience specializing in backend development, Python, FastAPI, Node.js, Vue.js, NuxtJS, Web3, and blockchain technologies.",
     url: "https://0xjevan.vercel.app",
-    image: "https://0xjevan.vercel.app/pic.png",
+    image: "https://0xjevan.vercel.app/evans.JPG",
     email: "evanseburu32@gmail.com",
     address: {
       "@type": "PostalAddress",

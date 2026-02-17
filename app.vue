@@ -1,6 +1,5 @@
 <template>
   <div class="grid">
-
     <nav
       :class="parentDivStyle"
       class="items-center border-b-2 border-black md:text-3xl text-lg fixed bg-[#feed01] z-20"
@@ -33,7 +32,7 @@
         class="transform translate-y-[1vh] md:col-start-2 md:col-span-2 col-start-2 col-span-10"
       >
         <img
-          :src="`./pic.png`"
+          :src="`./evans.JPG`"
           class="h-[60vh]"
           alt="Evans Eburu - Software Engineer Profile Picture"
           loading="lazy"
@@ -530,13 +529,15 @@ html {
 
 @font-face {
   font-family: "PowerGroteskTrial-Light";
-  src: local("PowerGroteskTrial"),
+  src:
+    local("PowerGroteskTrial"),
     url("./assets/PowerGroteskTrial-Light.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "PowerGroteskTrial-Bold";
-  src: local("PowerGroteskTrial"),
+  src:
+    local("PowerGroteskTrial"),
     url("./assets/PowerGroteskTrial-Bold.ttf") format("truetype");
 }
 
