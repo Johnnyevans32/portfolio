@@ -33,7 +33,7 @@
       >
         <img
           :src="`./evans.JPG`"
-          class="h-[60vh]"
+          class="h-[60vh] object-cover"
           alt="Evans Eburu - Software Engineer Profile Picture"
           loading="lazy"
           itemprop="image"

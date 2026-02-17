@@ -2,7 +2,7 @@
   "name": "0xjevan",
   "private": true,
   "engines": {
-    "node": "22.x"
+    "node": ">=22.0.0"
   },
   "scripts": {
     "build": "nuxt build",
