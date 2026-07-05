@@ -67,7 +67,7 @@ Allow: /
 Disallow: /admin/
 Disallow: /private/
 Disallow: /api/
-Sitemap: https://0xjevan.vercel.app/sitemap.xml
+Sitemap: https://evanseburu.com/sitemap.xml
 Crawl-delay: 1`;
 
     setHeader(event, "Content-Type", "text/plain");

@@ -83,55 +83,25 @@ export const SITE_CONFIG = {
 
 // Sitemap routes configuration
 export const SITEMAP_ROUTES = [
-  // Main pages
+  // Single-page site — only the homepage is a real, indexable URL.
+  // (In-page anchors like #publications are not separate URLs.)
   {
     url: "/",
     priority: 1.0,
     changefreq: "weekly",
     lastmod: new Date().toISOString().split("T")[0],
   },
-  {
-    url: "#summary",
-    priority: 0.8,
-    changefreq: "monthly",
-  },
-  {
-    url: "#works",
-    priority: 0.9,
-    changefreq: "weekly",
-  },
-  {
-    url: "#contact",
-    priority: 0.7,
-    changefreq: "monthly",
-  },
 ];
 
-// External URLs for sitemap (optional - don't include these if they're not your pages)
-export const EXTERNAL_URLS = [
-  // Social profiles - these help establish your identity
-  {
-    url: "https://github.com/Johnnyevans32",
-    priority: 0.5,
-    changefreq: "weekly",
-  },
-  {
-    url: "https://www.linkedin.com/in/0xjevan",
-    priority: 0.5,
-    changefreq: "weekly",
-  },
-  {
-    url: "https://x.com/0xjevan",
-    priority: 0.5,
-    changefreq: "weekly",
-    lastmod: new Date().toISOString().split("T")[0],
-  },
-  {
-    url: "https://medium.com/@0xjevan",
-    priority: 0.5,
-    changefreq: "weekly",
-  },
-];
+// A sitemap may only list URLs on this domain. Social profiles belong in the
+// JSON-LD `sameAs` array (already set), never in the sitemap — Google rejects
+// off-domain <loc> entries as "URL not allowed."
+export const EXTERNAL_URLS: {
+  url: string;
+  priority?: number;
+  changefreq?: string;
+  lastmod?: string;
+}[] = [];
 
 // Meta tags configuration
 export const META_TAGS = {
