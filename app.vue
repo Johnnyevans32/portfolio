@@ -3,7 +3,7 @@
     <aside class="rail">
       <img
         class="portrait"
-        src="/evans.JPG"
+        :src="'/evans.JPG'"
         alt="Evans Eburu"
         width="94"
         height="94"
