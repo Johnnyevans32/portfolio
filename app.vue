@@ -55,6 +55,37 @@
           cross-play benchmark over six frontier models. Currently an MSc
           student in Applied IT at Ural Federal University.
         </p>
+
+        <div class="feature reveal" style="animation-delay: 0.08s">
+          <div class="feature-label">Featured research</div>
+          <a class="feature-title" href="https://deceptionbench.xyz/paper"
+            >DeceptionBench — “Among LLMs”</a
+          >
+          <p class="feature-thesis">
+            A monitor reading <em>only</em> a model's private reasoning catches
+            the liar — across six frontier models, in a live cross-play
+            benchmark.
+          </p>
+          <div class="feature-stats">
+            <div class="fstat">
+              <span class="fnum">ρ = 0.89</span>
+              <span class="flab">deception ↔ detection</span>
+            </div>
+            <div class="fstat">
+              <span class="fnum">AUROC 1.00</span>
+              <span class="flab">monitor accuracy</span>
+            </div>
+            <div class="fstat">
+              <span class="fnum">96%</span>
+              <span class="flab">intent leaks in reasoning</span>
+            </div>
+          </div>
+          <div class="feature-links">
+            <a href="https://doi.org/10.5281/zenodo.21209429">Preprint (DOI)</a>
+            <a href="https://deceptionbench.xyz">Live demo</a>
+            <a href="https://deceptionbench.xyz/paper">Read</a>
+          </div>
+        </div>
       </section>
 
       <section id="recent" class="reveal" style="animation-delay: 0.1s">
@@ -206,7 +237,7 @@ export default defineComponent({
       { name: "studio", href: "https://jevan.studio" },
       {
         name: "cv",
-        href: "https://drive.google.com/file/d/1mU3oFcp1M7Msj-RIPKST_KDVS4r_qc6j/view",
+        href: "/cv.pdf",
       },
     ]);
 
@@ -272,13 +303,6 @@ export default defineComponent({
     ]);
 
     const projects = ref([
-      {
-        title: "DeceptionBench",
-        href: "https://deceptionbench.xyz",
-        desc: "",
-        tags: ["llm-safety", "typescript", "nestjs", "evaluation"],
-        year: "2026",
-      },
       {
         title: "Multicash",
         href: "https://multicash.vercel.app/",
@@ -346,9 +370,9 @@ export default defineComponent({
   --faint: #8a8c90;
   --rule: #e1e1da;
   --accent: #9e2b1b;
-  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua",
-    Georgia, "Times New Roman", serif;
-  --mono: "SF Mono", "JetBrains Mono", "IBM Plex Mono", ui-monospace, Menlo,
+  --serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Palatino,
+    "Book Antiqua", Georgia, "Times New Roman", serif;
+  --mono: "IBM Plex Mono", "SF Mono", "JetBrains Mono", ui-monospace, Menlo,
     Consolas, monospace;
 }
 
@@ -514,6 +538,94 @@ nav.rnav a:focus-visible {
 }
 .bio a:hover {
   color: var(--accent);
+}
+
+/* featured research */
+.feature {
+  margin-top: 28px;
+  border: 1px solid var(--rule);
+  background: #fcfcfa;
+  padding: 20px 22px;
+}
+.feature-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 9px;
+}
+.feature-title {
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-decoration: none;
+  display: inline-block;
+}
+.feature-title:hover {
+  color: var(--accent);
+}
+.feature-thesis {
+  font-size: 16px;
+  color: #26282d;
+  margin: 8px 0 16px;
+  line-height: 1.45;
+}
+.feature-thesis em {
+  font-style: italic;
+  color: var(--accent);
+}
+.feature-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 30px;
+  padding: 13px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.fstat {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.fnum {
+  font-family: var(--mono);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.flab {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.feature-links {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.feature-links a {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  border: 1px solid var(--rule);
+  padding: 5px 11px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.feature-links a:hover,
+.feature-links a:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+  outline: none;
 }
 
 section {
