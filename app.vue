@@ -1,6 +1,13 @@
 <template>
   <div class="page">
     <aside class="rail">
+      <img
+        class="portrait"
+        src="/evans.JPG"
+        alt="Evans Eburu"
+        width="94"
+        height="94"
+      />
       <h1 class="name">Evans Eburu</h1>
       <div class="role" itemprop="jobTitle">
         Software Engineer<br />AI-Safety Researcher
@@ -383,6 +390,20 @@ body {
   position: sticky;
   top: 0;
   padding: 58px 0 40px;
+}
+.rail .portrait {
+  width: 94px;
+  height: 94px;
+  object-fit: cover;
+  object-position: center center;
+  border: 1px solid var(--rule);
+  display: block;
+  margin-bottom: 22px;
+  filter: grayscale(1) contrast(1.03);
+  transition: filter 0.45s ease;
+}
+.rail .portrait:hover {
+  filter: grayscale(0) contrast(1);
 }
 .rail .name {
   font-size: 27px;
