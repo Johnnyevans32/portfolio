@@ -6,37 +6,36 @@
 // Base configuration
 export const SITE_CONFIG = {
   // Site metadata
-  hostname: "https://0xjevan.vercel.app",
-  title: "Evans Eburu - Software Engineer & Full Stack Developer",
+  hostname: "https://evanseburu.com",
+  title: "Evans Eburu — Software Engineer & AI-Safety Researcher",
   description:
-    "Evans Eburu is a software engineer with 6+ years of experience specializing in backend development, Python, FastAPI, Node.js, Vue.js, Web3, and blockchain technologies. Based in Lagos, Nigeria.",
+    "Evans Eburu is a software engineer (6+ yrs, backend & fintech) and independent AI-safety researcher. Author of DeceptionBench — a live benchmark for LLM deception, detection, and the monitorability of reasoning.",
 
   // SEO defaults
   seo: {
-    defaultTitle:
-      "Evans Eburu - Software Engineer | Backend & Full Stack Developer",
+    defaultTitle: "Evans Eburu — Software Engineer & AI-Safety Researcher",
     titleTemplate: "%s | Evans Eburu",
     defaultDescription:
-      "Evans Eburu is a software engineer with 6+ years of experience specializing in backend development, Python, FastAPI, Node.js, Vue.js, Web3, and blockchain technologies. View portfolio, projects, and technical articles.",
+      "Software engineer (backend & fintech) and independent AI-safety researcher. Author of DeceptionBench — a live cross-play benchmark for LLM deception, detection, and monitorability. View research, projects, and experience.",
     keywords: [
       "Evans Eburu",
       "Evans Eburu software engineer",
-      "Evans Eburu developer",
-      "Evans Eburu Nigeria",
-      "Evans Eburu Lagos",
+      "Evans Eburu researcher",
+      "Evans Eburu AI safety",
       "0xjevan",
-      "software engineer Nigeria",
-      "backend developer",
-      "full stack developer",
-      "Python developer",
-      "FastAPI developer",
+      "DeceptionBench",
+      "AI safety researcher",
+      "LLM deception",
+      "LLM evaluation",
+      "AI safety",
+      "chain-of-thought monitoring",
+      "software engineer",
+      "backend engineer",
+      "fintech engineer",
       "Node.js developer",
-      "Vue.js developer",
-      "blockchain developer",
+      "TypeScript developer",
+      "NestJS developer",
       "Web3 developer",
-      "software engineer Lagos",
-      "Nigerian software engineer",
-      "backend engineer Nigeria",
     ],
     author: "Evans Eburu",
     language: "en",
@@ -57,7 +56,7 @@ export const SITE_CONFIG = {
 
   // Sitemap configuration
   sitemap: {
-    hostname: "https://0xjevan.vercel.app",
+    hostname: "https://evanseburu.com",
     cacheTime: 1000 * 60 * 60, // 1 hour
     defaults: {
       changefreq: "weekly",
@@ -78,7 +77,7 @@ export const SITE_CONFIG = {
     userAgent: "*",
     allow: "/",
     disallow: ["/admin/", "/private/", "/api/", "/_nuxt/", "/__nuxt_error/"],
-    sitemap: "https://0xjevan.vercel.app/sitemap.xml",
+    sitemap: "https://evanseburu.com/sitemap.xml",
   },
 };
 
@@ -160,7 +159,7 @@ export const META_TAGS = {
     { property: "og:type", content: "profile" },
     { property: "og:site_name", content: "Evans Eburu Portfolio" },
     { property: "og:locale", content: "en_US" },
-    { property: "og:url", content: "https://0xjevan.vercel.app" },
+    { property: "og:url", content: "https://evanseburu.com" },
     {
       property: "og:title",
       content: "Evans Eburu - Software Engineer & Full Stack Developer",
@@ -170,7 +169,7 @@ export const META_TAGS = {
       content:
         "Evans Eburu is a software engineer with 6+ years of experience specializing in backend development, Python, FastAPI, Node.js, Vue.js, and blockchain technologies.",
     },
-    { property: "og:image", content: "https://0xjevan.vercel.app/evans.JPG" },
+    { property: "og:image", content: "https://evanseburu.com/evans.JPG" },
     { property: "og:image:width", content: "1200" },
     { property: "og:image:height", content: "630" },
     { property: "og:image:alt", content: "Evans Eburu - Software Engineer" },
@@ -184,14 +183,14 @@ export const META_TAGS = {
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:site", content: "@0xjevan" },
     { name: "twitter:creator", content: "@0xjevan" },
-    { name: "twitter:url", content: "https://0xjevan.vercel.app" },
+    { name: "twitter:url", content: "https://evanseburu.com" },
     { name: "twitter:title", content: "Evans Eburu - Software Engineer" },
     {
       name: "twitter:description",
       content:
         "Software engineer with 6+ years experience in backend development, Python, Node.js, Vue.js, and blockchain technologies.",
     },
-    { name: "twitter:image", content: "https://0xjevan.vercel.app/evans.JPG" },
+    { name: "twitter:image", content: "https://evanseburu.com/evans.JPG" },
     {
       name: "twitter:image:alt",
       content: "Evans Eburu - Software Engineer Portfolio",
@@ -206,11 +205,11 @@ export const META_TAGS = {
     alternateName: ["0xjevan", "Jevan"],
     givenName: "Evans",
     familyName: "Eburu",
-    jobTitle: "Software Engineer",
+    jobTitle: "Software Engineer & AI-Safety Researcher",
     description:
-      "Software engineer with 6+ years of experience specializing in backend development, Python, FastAPI, Node.js, Vue.js, NuxtJS, Web3, and blockchain technologies.",
-    url: "https://0xjevan.vercel.app",
-    image: "https://0xjevan.vercel.app/evans.JPG",
+      "Software engineer (backend & fintech) and independent AI-safety researcher. Author of DeceptionBench, a live benchmark for LLM deception, detection, and the monitorability of reasoning.",
+    url: "https://evanseburu.com",
+    image: "https://evanseburu.com/evans.JPG",
     email: "evanseburu32@gmail.com",
     address: {
       "@type": "PostalAddress",
@@ -227,17 +226,28 @@ export const META_TAGS = {
       "https://www.linkedin.com/in/0xjevan",
       "https://x.com/0xjevan",
       "https://medium.com/@0xjevan",
+      "https://deceptionbench.xyz",
+      "https://doi.org/10.5281/zenodo.21209429",
     ],
     worksFor: {
       "@type": "Organization",
-      name: "Autospend",
-      url: "https://www.autospend.ai",
+      name: "Figo",
     },
-    alumniOf: {
-      "@type": "Organization",
-      name: "Federal University of Technology Owerri",
-    },
+    alumniOf: [
+      {
+        "@type": "CollegeOrUniversity",
+        name: "Ural Federal University",
+      },
+      {
+        "@type": "CollegeOrUniversity",
+        name: "Federal University of Technology Owerri",
+      },
+    ],
     knowsAbout: [
+      "AI Safety",
+      "LLM Evaluation",
+      "AI Deception",
+      "Chain-of-Thought Monitoring",
       "Software Engineering",
       "Backend Development",
       "Full Stack Development",

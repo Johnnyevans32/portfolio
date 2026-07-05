@@ -1,625 +1,767 @@
 <template>
-  <div class="grid">
-    <nav
-      :class="parentDivStyle"
-      class="items-center border-b-2 border-black md:text-3xl text-lg fixed bg-white z-20"
-      role="navigation"
-      aria-label="Main navigation"
-    >
-      <span class="col-start-2" itemprop="alternateName">0xjevan</span>
-
-      <div class="md:col-start-5 col-start-11 h-5 justify-self-end flex gap-2">
-        <a
-          v-for="item in navItems"
-          :key="item.id"
-          class="cursor-pointer hover:border-b-2 hover:border-black"
-          @click="() => scrollToSection(item.id)"
-          :href="`#${item.id}`"
-          :aria-label="`Navigate to ${item.name} section`"
-        >
-          {{ item.name }}
-        </a>
+  <div class="page">
+    <aside class="rail">
+      <h1 class="name">Evans Eburu</h1>
+      <div class="role" itemprop="jobTitle">
+        Software Engineer<br />AI-Safety Researcher
       </div>
-    </nav>
+      <p class="thesis">
+        Measuring deception, detection, and the monitorability of machine
+        reasoning.
+      </p>
+      <nav class="rnav" aria-label="Sections">
+        <a v-for="item in navItems" :key="item.id" :href="`#${item.id}`">{{
+          item.name
+        }}</a>
+      </nav>
+      <div class="contacts">
+        <a
+          v-for="c in contacts"
+          :key="c.name"
+          :href="c.href"
+          target="_blank"
+          rel="noopener noreferrer"
+          itemprop="sameAs"
+          >{{ c.name }}</a
+        >
+      </div>
+    </aside>
 
     <main
-      :class="parentDivStyle"
-      class="min-h-screen items-center md:pt-0 pt-24 gap-4 bg-white"
+      class="content"
       itemscope
       itemtype="https://schema.org/Person"
     >
-      <div
-        class="transform translate-y-[1vh] md:col-start-2 md:col-span-2 col-start-2 col-span-10"
-      >
-        <img
-          :src="`/evans.JPG`"
-          class="h-[60vh] object-cover"
-          alt="Evans Eburu - Software Engineer Profile Picture"
-          loading="lazy"
-          itemprop="image"
-        />
-        <h1 class="absolute bottom-1 -right-6 text-black md:text-9xl text-6xl">
-          portfolio
-        </h1>
-      </div>
-      <div
-        class="md:col-start-4 md:col-span-2 text-right col-start-2 col-span-10"
-      >
-        <h1 itemprop="name">Hello, I'm Evans Eburu.</h1>
-        <p itemprop="description">
-          i am a
-          <b :style="underlineText" itemprop="jobTitle">software engineer</b>
-          based on earth! focused on building applications with scalable
-          architectures. proud team player focused on achieving project
-          objectives with speed and accuracy.
+      <section id="about" class="first">
+        <h2 class="hero-q reveal">
+          Can you catch an AI lying by reading its
+          <em>private thoughts?</em>
+        </h2>
+        <p class="bio reveal" style="animation-delay: 0.05s" itemprop="description">
+          I'm a backend and fintech engineer with six years building
+          reliability-critical systems — payment rails, cross-border
+          settlement, agentic trading. Alongside that, I do independent research
+          on AI safety: how large language models deceive, how well deception
+          can be detected, and whether a model's private reasoning can be
+          monitored to catch it. I released this as
+          <a href="https://deceptionbench.xyz">DeceptionBench</a>, a live
+          cross-play benchmark over six frontier models. Currently an MSc
+          student in Applied IT at Ural Federal University.
         </p>
-      </div>
-    </main>
+      </section>
 
-    <section
-      :class="parentDivStyle"
-      class="items-center py-10 text-white bg-black"
-      id="summary"
-      aria-labelledby="summary-heading"
-    >
-      <div class="md:col-start-3 md:col-span-2 col-start-2 col-span-10">
-        <h2 id="summary-heading" :style="underlineText">what i do</h2>
-        <p>
-          as a <b :style="underlineText">software engineer</b> with over 6 years
-          of experience with a focus on backend development, software
-          architecture, and design, I bring a unique set of skills to any
-          project. I specialize in building backend infrastructure, designing
-          scalable and reliable software architectures, developing RESTful APIs,
-          optimizing database systems, deploying applications to the cloud, and
-          collaborating with teams to achieve project objectives. I am skilled
-          in a range of programming languages and frameworks. Here is the
-          overview. <br /><br />
-          <b :style="underlineText">Advanced skills:</b> Python, FastAPI,
-          Typescript, Javascript, Node.js, NestJs, VueJs, NuxtJS, Docker,
-          MongoDB, Web3 <br /><br />
+      <section id="recent" class="reveal" style="animation-delay: 0.1s">
+        <p class="eyebrow">Recent</p>
+        <hr class="eyebrow-rule" />
+        <ul class="feed">
+          <li>
+            <span class="yr">2026</span>
+            <span class="ev"
+              >Released
+              <a href="https://deceptionbench.xyz/paper">DeceptionBench</a>, a
+              cross-play benchmark for LLM deception &amp; monitorability, as a
+              preprint on Zenodo.</span
+            >
+          </li>
+          <li>
+            <span class="yr">2026</span>
+            <span class="ev"
+              >Joined <strong>Figo</strong> as founding engineer — core backend
+              for a cross-border neobank.</span
+            >
+          </li>
+          <li>
+            <span class="yr">2025</span>
+            <span class="ev"
+              >Began MSc in Applied IT at
+              <strong>Ural Federal University</strong>.</span
+            >
+          </li>
+        </ul>
+      </section>
 
-          <b :style="underlineText">Intermediate skills:</b> Java, React, SQL
-          databases, Kubernetes, Golang, Smart Contracts, Web5
-        </p>
-      </div>
-    </section>
-
-    <section :class="parentDivStyle" id="works" aria-labelledby="works-heading">
-      <div class="col-start-2 md:col-end-6 col-span-10 flex flex-col gap-4">
-        <div class="flex gap-2 items-center">
-          <font-awesome-icon icon="grip-lines" class="text-2xl" />
-          <h2 id="works-heading">selected projects</h2>
-        </div>
-        <article
-          v-for="project in projects"
-          :key="project.title"
-          class="flex justify-between items-center border-2 border-black p-4 cursor-pointer hover:bg-black hover:text-white"
-          itemscope
-          itemtype="https://schema.org/SoftwareSourceCode"
-        >
-          <div class="flex gap-4 items-center">
-            <time :datetime="project.year" itemprop="dateCreated">{{
-              project.year
-            }}</time>
-            <div class="flex flex-col">
-              <h3 itemprop="name">{{ project.title }}</h3>
-              <div class="flex gap-2" itemprop="programmingLanguage">
-                <span
-                  v-for="tech in project.technologies"
-                  :key="tech"
-                  class="text-xs"
-                  >#{{ tech }}</span
+      <section id="publications" class="reveal">
+        <p class="eyebrow">Publications</p>
+        <hr class="eyebrow-rule" />
+        <ol class="pubs">
+          <li
+            v-for="pub in publications"
+            :key="pub.idx"
+            class="pub"
+            itemscope
+            itemtype="https://schema.org/ScholarlyArticle"
+          >
+            <span class="pub-idx">{{ pub.idx }}</span>
+            <div>
+              <a class="pub-title" :href="pub.titleHref" itemprop="name">{{
+                pub.title
+              }}</a>
+              <div class="pub-authors">
+                <span class="you">{{ pub.authorsYou }}</span
+                >{{ pub.authorsRest }}
+              </div>
+              <div class="pub-venue">
+                {{ pub.venuePre
+                }}<a v-if="pub.doi" :href="pub.doi.href">{{ pub.doi.text }}</a>
+              </div>
+              <div class="pub-links">
+                <a
+                  v-for="l in pub.links"
+                  :key="l.href"
+                  :href="l.href"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >{{ l.label }}</a
                 >
               </div>
             </div>
-          </div>
+          </li>
+        </ol>
+      </section>
 
-          <div class="flex gap-4">
-            <a
-              class="flex items-center gap-1"
-              v-for="link in project.links"
-              :key="link.link"
-              :href="link.link"
-              target="_blank"
-              rel="noopener noreferrer"
-              :aria-label="`${
-                link.type === 'app' ? 'View live' : 'View code'
-              } for ${project.title}`"
-              itemprop="url"
-            >
-              <font-awesome-icon
-                v-if="link.type === 'app'"
-                icon="fa-solid fa-eye"
-                class="text-xs"
-              />
-              <font-awesome-icon
-                v-else
-                icon="fa-solid fa-code"
-                class="text-xs"
-              />
-              {{ link.type === "app" ? "live" : "code" }}
-            </a>
-          </div>
-        </article>
-      </div>
-    </section>
-    <section :class="parentDivStyle" aria-labelledby="articles-heading">
-      <div class="col-start-2 md:col-end-6 col-span-10 flex flex-col gap-4">
-        <div class="flex gap-2 items-center">
-          <font-awesome-icon icon="grip-lines" class="text-2xl" />
-          <h2 id="articles-heading">articles</h2>
-        </div>
-        <article
-          v-for="article in articles"
-          :key="article.title"
-          class="flex items-center border-2 border-black p-4 cursor-pointer hover:bg-black hover:text-white"
-          itemscope
-          itemtype="https://schema.org/Article"
-          @click="openArticle(article.link)"
-        >
-          <div class="flex gap-4 items-center w-full">
-            <time
-              :datetime="article.date"
-              class="w-14 md:w-28"
-              itemprop="datePublished"
-              >{{ article.date }}</time
-            >
-            <div class="flex flex-col w-full">
-              <h3 itemprop="headline">{{ article.title }}</h3>
-              <p class="text-xs" itemprop="articleSection">
-                #{{ article.category }}
-              </p>
+      <section id="writing" class="reveal">
+        <p class="eyebrow">Writing</p>
+        <hr class="eyebrow-rule" />
+        <ul class="rows">
+          <li v-for="w in writing" :key="w.href">
+            <div class="row-t">
+              <a :href="w.href" target="_blank" rel="noopener noreferrer">{{
+                w.title
+              }}</a>
+              <div class="row-sub">{{ w.category }}</div>
             </div>
-          </div>
+            <div class="row-meta">{{ w.year }}</div>
+          </li>
+        </ul>
+      </section>
 
-          <span class="flex items-center gap-1 justify-end">
-            <font-awesome-icon icon="clock" class="text-xs" />
-            <time
-              :datetime="`PT${article.readDuration.replace(' min read', '')}M`"
-              class="truncate"
-              itemprop="timeRequired"
-            >
-              {{ article.readDuration }}
-            </time>
-          </span>
-        </article>
-      </div>
-    </section>
-
-    <section :class="parentDivStyle" aria-labelledby="work-history-heading">
-      <div class="col-start-2 md:col-end-6 col-span-10 flex flex-col gap-4">
-        <div class="flex gap-2 items-center">
-          <font-awesome-icon icon="grip-lines" class="text-2xl" />
-          <h2 id="work-history-heading">work history</h2>
-        </div>
-        <article
-          v-for="job in jobs"
-          :key="job.company"
-          class="flex justify-between items-center border-2 border-black p-4 hover:bg-black hover:text-white"
-          itemscope
-          itemtype="https://schema.org/OrganizationRole"
-        >
-          <div class="flex gap-4 items-center">
-            <time
-              :datetime="job.year"
-              class="w-14 md:w-28"
-              itemprop="startDate"
-              >{{ job.year }}</time
-            >
-            <div class="flex flex-col">
-              <h3 itemprop="roleName">{{ job.title }}</h3>
-              <a
-                :href="job.companySite"
-                target="_blank"
-                class="text-xs"
-                rel="noopener noreferrer"
-                itemprop="memberOf"
-                itemscope
-                itemtype="https://schema.org/Organization"
-              >
-                <span itemprop="name">{{ job.company }}</span>
-                <font-awesome-icon
-                  icon="arrow-right"
-                  :style="{ transform: 'rotate(315deg)' }"
-                  class=""
-                />
-                ({{ job.type }})
-              </a>
+      <section id="projects" class="reveal">
+        <p class="eyebrow">Selected projects</p>
+        <hr class="eyebrow-rule" />
+        <ul class="rows">
+          <li v-for="p in projects" :key="p.title">
+            <div class="row-t">
+              <a :href="p.href" target="_blank" rel="noopener noreferrer">{{
+                p.title
+              }}</a
+              >{{ p.desc }}
+              <div class="tags">
+                <span v-for="t in p.tags" :key="t">{{ t }}</span>
+              </div>
             </div>
-          </div>
+            <div class="row-meta">{{ p.year }}</div>
+          </li>
+        </ul>
+      </section>
 
-          <div class="gap-2 md:flex hidden" itemprop="skills">
-            <span
-              v-for="tech in job.technologies"
-              :key="tech"
-              class="border-2 border-black p-1 bg-white text-black"
-              >{{ tech }}</span
-            >
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <footer
-      :class="parentDivStyle"
-      class="py-10 gap-4 rounded-t-2xl bg-black text-white"
-      id="contact"
-      role="contentinfo"
-    >
-      <h2 class="col-start-2" id="contact-heading">contacts</h2>
-      <div class="col-start-2 flex flex-col gap-4">
-        <a
-          class="flex items-center gap-1"
-          v-for="social in socials"
-          :key="social.name"
-          :href="social.link"
-          target="_blank"
-          rel="noopener noreferrer"
-          :aria-label="`Visit my ${social.name} profile`"
-          itemprop="sameAs"
-        >
-          <font-awesome-icon :icon="social.icon" class="text-xs" />
-          {{ social.name }}
-          <font-awesome-icon
-            icon="arrow-right"
-            :style="{ transform: 'rotate(315deg)' }"
-            class="text-xs"
-        /></a>
-      </div>
-      <div class="md:col-start-5 col-start-11 justify-self-end">
-        <a
-          href="https://drive.google.com/file/d/1mU3oFcp1M7Msj-RIPKST_KDVS4r_qc6j/view?usp=sharing"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex items-center gap-1"
-          aria-label="Download my resume"
-        >
-          <font-awesome-icon icon="file" class="text-xs" />resume
-          <font-awesome-icon
-            icon="arrow-right"
-            :style="{ transform: 'rotate(315deg)' }"
-            class="text-xs"
-        /></a>
-      </div>
-
-      <p
-        class="col-span-12 md:col-span-6 text-center"
-        itemprop="copyrightNotice"
-      >
-        &copy; 2024 0xjevan
-      </p>
-    </footer>
-
-    <!-- Article Modal -->
-    <div
-      v-if="isModalOpen"
-      class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4"
-      @click.self="closeModal"
-    >
-      <div
-        class="bg-white w-full h-[90vh] max-w-6xl rounded-lg flex flex-col overflow-hidden relative shadow-2xl"
-      >
-        <div
-          class="flex justify-between items-center p-4 border-b-2 border-black bg-white"
-        >
-          <h3 class="font-bold text-lg truncate pr-4">Reading Article</h3>
-          <div class="flex gap-2 shrink-0">
-            <a
-              :href="currentArticleUrl"
-              target="_blank"
-              class="px-4 py-2 border-2 border-black hover:bg-black hover:text-white transition-colors text-sm font-bold flex items-center gap-2"
-            >
-              Open Original <font-awesome-icon icon="external-link-alt" />
-            </a>
-            <button
-              @click="closeModal"
-              class="px-4 py-2 bg-black text-white border-2 border-black hover:bg-white hover:text-black transition-colors text-sm font-bold"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-        <div class="flex-grow w-full relative bg-gray-50">
-          <div
-            class="absolute inset-0 flex items-center justify-center text-gray-500 z-0"
-          >
-            <div class="text-center p-8">
-              <p class="mb-2">Loading content...</p>
-              <p class="text-xs">
-                If content doesn't load, it may be blocked by the source site.
-                <br />Please use the "Open Original" button above.
-              </p>
+      <section id="experience" class="reveal">
+        <p class="eyebrow">Experience</p>
+        <hr class="eyebrow-rule" />
+        <ul class="rows">
+          <li v-for="job in jobs" :key="job.company">
+            <div class="row-t">
+              {{ job.title }} — <strong>{{ job.company }}</strong>
+              <div class="row-sub">{{ job.sub }}</div>
             </div>
-          </div>
-          <iframe
-            :src="currentArticleUrl"
-            class="w-full h-full border-0 relative z-10 bg-white"
-            title="Article content"
-            allowfullscreen
-          ></iframe>
-        </div>
-      </div>
-    </div>
+            <div class="row-meta">
+              {{ job.year }}<span v-if="job.current" class="now"> now</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <footer class="foot">
+        <span>&copy; 2026 Evans Eburu</span>
+        <span>Available worldwide · remote</span>
+      </footer>
+    </main>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   setup() {
-    const underlineText = ref({
-      "text-decoration-line": "underline",
-      "text-decoration-color": "#000000",
-    });
-    const scrollToSection = (id: string) => {
-      const releventDiv = document.getElementById(id);
-      releventDiv?.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-        inline: "center",
-      });
-    };
-    const parentDivStyle = ref("grid grid-cols-12 md:grid-cols-6 py-5");
-
     const navItems = ref([
-      { name: "about", id: "summary" },
-      { name: "works", id: "works" },
-      { name: "contacts", id: "contact" },
+      { name: "about", id: "about" },
+      { name: "publications", id: "publications" },
+      { name: "writing", id: "writing" },
+      { name: "projects", id: "projects" },
+      { name: "experience", id: "experience" },
     ]);
 
-    const isModalOpen = ref(false);
-    const currentArticleUrl = ref("");
+    const contacts = ref([
+      { name: "email", href: "mailto:evanseburu32@gmail.com" },
+      { name: "github", href: "https://github.com/Johnnyevans32" },
+      { name: "linkedin", href: "https://www.linkedin.com/in/0xjevan" },
+      { name: "zenodo", href: "https://doi.org/10.5281/zenodo.21209429" },
+      { name: "studio", href: "https://jevan.studio" },
+      {
+        name: "cv",
+        href: "https://drive.google.com/file/d/1mU3oFcp1M7Msj-RIPKST_KDVS4r_qc6j/view",
+      },
+    ]);
 
-    const openArticle = (url: string) => {
-      currentArticleUrl.value = url;
-      isModalOpen.value = true;
-    };
+    const publications = ref([
+      {
+        idx: "[1]",
+        title:
+          "Among LLMs: A Cross-Play Benchmark for Deception, Detection, and the Monitorability of Reasoning",
+        titleHref: "https://deceptionbench.xyz/paper",
+        authorsYou: "Evans Eburu",
+        authorsRest: "",
+        venuePre: "Preprint · Zenodo · 2026 · ",
+        doi: {
+          text: "doi:10.5281/zenodo.21209429",
+          href: "https://doi.org/10.5281/zenodo.21209429",
+        },
+        links: [
+          { label: "PDF", href: "https://deceptionbench.xyz/among-llms.pdf" },
+          { label: "Live demo", href: "https://deceptionbench.xyz" },
+          { label: "Read online", href: "https://deceptionbench.xyz/paper" },
+        ],
+      },
+      {
+        idx: "[2]",
+        title:
+          "Discrete Event Simulation of a Municipal Meat Production System: Bottleneck Analysis and Optimization",
+        titleHref:
+          "http://www.rypravlenie.ru/wp-content/uploads/2026/01/05-Eburu_Balungu.pdf",
+        authorsYou: "Evans Eburu",
+        authorsRest: ", Daniel M. Balungu",
+        venuePre:
+          "Sustainable Innovative Development: Design & Management · 2026 · RSCI (eLIBRARY.ru)",
+        doi: null,
+        links: [
+          {
+            label: "PDF",
+            href: "http://www.rypravlenie.ru/wp-content/uploads/2026/01/05-Eburu_Balungu.pdf",
+          },
+        ],
+      },
+    ]);
 
-    const closeModal = () => {
-      isModalOpen.value = false;
-      currentArticleUrl.value = "";
-    };
+    const writing = ref([
+      {
+        title:
+          "Unlocking Financial Potential: FinSight AI's promise for empowered finance",
+        href: "https://medium.com/@0xjevan/unlocking-financial-potential-finsight-ais-promises-for-empowered-finance-e0fb5ebdabcb",
+        category: "decentralised finance & ai",
+        year: "2024",
+      },
+      {
+        title: "Deg X: bringing cross-chain DeFi interaction to users",
+        href: "https://medium.com/@0xjevan/deg-x-bringing-cross-chain-defi-interaction-to-users-8a1bd37c7646",
+        category: "defi",
+        year: "2024",
+      },
+      {
+        title: "I'll change the world",
+        href: "https://jevan.hashnode.dev/ill-change-the-world",
+        category: "personal",
+        year: "2022",
+      },
+    ]);
 
     const projects = ref([
       {
-        title: "Goals & Actions",
-        desc: "AI-powered personal and professional goals management",
-        technologies: ["nextjs", "nodejs", "postgresql", "ai", "ci/cd"],
-        links: [
-          { type: "app", link: "https://goalsnactions.vercel.app/" },
-          { type: "code", link: "https://github.com/Johnnyevans32/goals" },
-        ],
-        year: "2024",
+        title: "DeceptionBench",
+        href: "https://deceptionbench.xyz",
+        desc: "",
+        tags: ["llm-safety", "typescript", "nestjs", "evaluation"],
+        year: "2026",
       },
       {
         title: "Multicash",
-        desc: "multi-currency digital wallet",
-        technologies: ["nuxt3", "web5", "tbdex", "wallet"],
-        links: [
-          { type: "app", link: "https://multicash.vercel.app/" },
-          { type: "code", link: "https://github.com/Johnnyevans32/MultiCash" },
-        ],
-        year: "2024",
-      },
-      {
-        title: "Finsight AI",
-        desc: "financial management dashboard",
-        technologies: ["nuxt3", "web5", "ai"],
-        links: [
-          { type: "app", link: "https://aifinsight.vercel.app/" },
-          { type: "code", link: "https://github.com/Johnnyevans32/AiFinsight" },
-        ],
+        href: "https://multicash.vercel.app/",
+        desc: " — multi-currency wallet on tbDEX",
+        tags: ["nuxt", "web5", "tbdex"],
         year: "2024",
       },
       {
         title: "Deg X",
-        desc: "decentralised wallet",
-        technologies: ["python", "web3"],
-        links: [
-          { type: "app", link: "https://deg-x-charlie.vercel.app/" },
-          { type: "code", link: "https://github.com/Johnnyevans32/deg-x-api" },
-        ],
+        href: "https://deg-x-charlie.vercel.app/",
+        desc: " — cross-chain non-custodial DeFi wallet",
+        tags: ["web3", "python", "multi-chain"],
         year: "2023",
-      },
-      {
-        title: "Pool X",
-        desc: "token staking protocol",
-        technologies: ["python", "web3"],
-        links: [
-          { type: "app", link: "https://pool-x.netlify.app/" },
-          {
-            type: "code",
-            link: "https://github.com/Johnnyevans32/staking-erc-20",
-          },
-        ],
-        year: "2023",
-      },
-    ]);
-
-    const articles = ref([
-      {
-        title:
-          "Unlocking Financial Potential: FinSight AI’s Promises for Empowered Finance",
-        category: "Decentralised Finance & AI",
-        date: "Jan 26, 2024",
-        readDuration: "2 min read",
-        link: "https://medium.com/@0xjevan/unlocking-financial-potential-finsight-ais-promises-for-empowered-finance-e0fb5ebdabcb",
-      },
-      {
-        title: "Deg X bringing cross chain defi interaction to users!!!",
-        category: "Defi",
-        date: "Jan 17, 2024",
-        readDuration: "1 min read",
-        link: "https://medium.com/@0xjevan/deg-x-bringing-cross-chain-defi-interaction-to-users-8a1bd37c7646",
-      },
-      {
-        title: "I'll change the world",
-        category: "Personal",
-        date: "Mar 16, 2022",
-        readDuration: "1 min read",
-        link: "https://jevan.hashnode.dev/ill-change-the-world",
       },
     ]);
 
     const jobs = ref([
       {
-        title: "Senior Backend Engineer",
+        title: "Founding Engineer",
+        company: "Figo",
+        sub: "cross-border neobank · stablecoin rails, card issuing",
+        year: "2026 — ",
+        current: true,
+      },
+      {
+        title: "Founder / Lead Engineer",
+        company: "Jevan Studio",
+        sub: "product & engineering",
+        year: "2026 — ",
+        current: true,
+      },
+      {
+        title: "Founding Engineer",
         company: "Autospend",
-        companySite: "https://www.autospend.ai",
-        technologies: [
-          "Stablecoins",
-          "NestJS",
-          "PostgreSQL",
-          "Blockchain",
-          "AWS",
-        ],
-        year: "2025 - Present",
-        type: "full time",
-      },
-      {
-        title: "Lead Software Engineer",
-        company: "Talesconnect",
-        companySite: "https://www.talesconnect.io",
-        technologies: [
-          "Vuejs",
-          "NodeJs",
-          "Mongodb",
-          "LMS Integration",
-          "Real-time Messaging",
-          "LTI",
-        ],
-        year: "2024 - October 2025",
-        type: "full time",
+        sub: "stablecoin infra · agentic trading system",
+        year: "2025 — ",
+        current: true,
       },
       {
         title: "Senior Backend Engineer",
-        company: "Bento Africa",
-        companySite: "https://bento.africa",
-        technologies: ["payroll", "node-js", "psp integrations"],
-        year: "2020 - 2024",
-        type: "full time",
-      },
-      {
-        title: "Frontend Engineer",
-        company: "Dutch0x",
-        companySite: "https://www.dutch0x.io/",
-        technologies: ["ethereum", "web3"],
-        year: "2023 - 2023",
-        type: "contract",
-      },
-      {
-        title: "Founder",
-        company: "Deg X",
-        companySite: "https://degx.typedream.app/",
-        technologies: ["ethereum", "web3"],
-        year: "2022 - 2023",
-        type: "personal project",
-      },
-      {
-        title: "Backend Engineer Intern",
-        company: "HNG Internship",
-        companySite: "https://internship.zuri.team/",
-        technologies: ["python", "APIs"],
-        year: "2020 - 2020",
-        type: "internship",
-      },
-      {
-        title: "Fullstack Engineer Intern",
-        company: "Skysenx Hub",
-        companySite: "https://skysenx.com/",
-        technologies: ["php", "MySql"],
-        year: "2019 - 2020",
-        type: "internship",
-      },
-      {
-        title: "Control Room Engineer Intern",
-        company: "Federal Radio Corporation of Nigeria",
-        companySite: "https://radionigeria.gov.ng/",
-        technologies: [],
-        year: "2018 - 2019",
-        type: "internship",
-      },
-    ]);
-
-    const socials = ref([
-      {
-        link: "https://x.com/0xjevan",
-        icon: "fa-brands fa-square-x-twitter",
-        name: "x",
-      },
-      {
-        link: "https://www.linkedin.com/in/0xjevan",
-        icon: "fa-brands fa-linkedin",
-        name: "linkedin",
-      },
-      {
-        link: "https://github.com/Johnnyevans32",
-        icon: "fa-brands fa-github",
-        name: "github",
-      },
-      {
-        link: "https://medium.com/@0xjevan",
-        icon: "fa-brands fa-medium",
-        name: "medium",
-      },
-      {
-        link: "mailto:evanseburu32@gmail.com",
-        icon: "fa-solid fa-envelope",
-        name: "email",
+        company: "Bento",
+        sub: "Nigeria's leading payroll platform",
+        year: "2020 — 2024",
+        current: false,
       },
     ]);
 
     return {
-      underlineText,
       navItems,
+      contacts,
+      publications,
+      writing,
       projects,
-      socials,
       jobs,
-      articles,
-      parentDivStyle,
-      scrollToSection,
-      isModalOpen,
-      currentArticleUrl,
-      openArticle,
-      closeModal,
     };
   },
 });
 </script>
 
 <style>
+:root {
+  --paper: #f6f6f3;
+  --ink: #16181c;
+  --soft: #57595f;
+  --faint: #8a8c90;
+  --rule: #e1e1da;
+  --accent: #9e2b1b;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua",
+    Georgia, "Times New Roman", serif;
+  --mono: "SF Mono", "JetBrains Mono", "IBM Plex Mono", ui-monospace, Menlo,
+    Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body,
 html {
-  font-family: "PowerGroteskTrial-Light", sans-serif;
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
 }
 
-@font-face {
-  font-family: "PowerGroteskTrial-Light";
-  src:
-    local("PowerGroteskTrial"),
-    url("./assets/PowerGroteskTrial-Light.ttf") format("truetype");
+body {
+  font-size: 18px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-@font-face {
-  font-family: "PowerGroteskTrial-Bold";
-  src:
-    local("PowerGroteskTrial"),
-    url("./assets/PowerGroteskTrial-Bold.ttf") format("truetype");
+.page {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 28px;
+  display: grid;
+  grid-template-columns: 244px 1fr;
+  gap: 68px;
+  align-items: start;
 }
 
-h1 {
-  font-family: "PowerGroteskTrial-Bold", sans-serif;
-  @apply md:text-7xl text-5xl;
+/* identity rail */
+.rail {
+  position: sticky;
+  top: 0;
+  padding: 58px 0 40px;
+}
+.rail .name {
+  font-size: 27px;
+  line-height: 1.12;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+  text-wrap: balance;
+}
+.rail .name::after {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 2px;
+  background: var(--accent);
+  margin-top: 14px;
+}
+.rail .role {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--soft);
+  margin-top: 16px;
+  line-height: 1.7;
+}
+.rail .thesis {
+  font-style: italic;
+  font-size: 15px;
+  color: var(--soft);
+  margin-top: 16px;
+  line-height: 1.45;
+}
+nav.rnav {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+nav.rnav a {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 3px 0;
+  width: max-content;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+nav.rnav a:hover,
+nav.rnav a:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+  outline: none;
+}
+.rail .contacts {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+}
+.rail .contacts a {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  color: var(--soft);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1px;
+  transition: color 0.15s, border-color 0.15s;
+}
+.rail .contacts a:hover,
+.rail .contacts a:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+  outline: none;
 }
 
-h2 {
-  font-size: 2rem;
-  line-height: 1;
+/* content */
+.content {
+  padding: 58px 0 90px;
+  max-width: 660px;
+}
+.hero-q {
+  font-size: 33px;
+  line-height: 1.24;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin: 0 0 26px;
+  text-wrap: balance;
+}
+.hero-q em {
+  font-style: italic;
+  color: var(--accent);
+}
+.bio {
+  font-size: 18px;
+  color: #24262b;
+  margin: 0;
+}
+.bio a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 0.5px;
+}
+.bio a:hover {
+  color: var(--accent);
 }
 
-p {
-  font-size: 1rem;
-  line-height: 1.5rem;
+section {
+  margin-top: 56px;
+  scroll-margin-top: 24px;
+}
+section.first {
+  margin-top: 0;
+}
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 4px;
+}
+.eyebrow-rule {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 0 0 22px;
+}
+
+/* recent feed */
+ul.feed {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+ul.feed li {
+  display: grid;
+  grid-template-columns: 62px 1fr;
+  gap: 16px;
+  align-items: baseline;
+}
+ul.feed .yr {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+}
+ul.feed .ev {
+  font-size: 16.5px;
+  color: #26282d;
+  line-height: 1.5;
+}
+ul.feed .ev a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+}
+ul.feed .ev a:hover {
+  color: var(--accent);
+}
+
+/* publications */
+ol.pubs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+.pub {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 8px;
+}
+.pub-idx {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--faint);
+  padding-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.pub-title {
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.32;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: -0.005em;
+}
+.pub-title:hover {
+  color: var(--accent);
+}
+.pub-authors {
+  font-size: 15.5px;
+  color: var(--soft);
+  margin-top: 3px;
+}
+.pub-authors .you {
+  color: var(--ink);
+  font-weight: 600;
+}
+.pub-venue {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+  color: var(--faint);
+  margin-top: 5px;
+}
+.pub-venue a {
+  color: var(--faint);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.pub-venue a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.pub-links {
+  margin-top: 9px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pub-links a {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  border: 1px solid var(--rule);
+  padding: 4px 9px;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.pub-links a:hover,
+.pub-links a:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+  outline: none;
+}
+
+/* row lists */
+ul.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+ul.rows li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px 20px;
+  align-items: baseline;
+  padding: 14px 0;
+  border-top: 1px solid var(--rule);
+}
+ul.rows li:first-child {
+  border-top: none;
+}
+.row-t {
+  font-size: 17px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.row-t a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s, color 0.15s;
+}
+.row-t a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.row-sub {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--faint);
+  margin-top: 3px;
+}
+.row-meta {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--soft);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  text-align: right;
+}
+.row-meta .now {
+  color: var(--accent);
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+.tags span {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.03em;
+  color: var(--faint);
+}
+.tags span::before {
+  content: "#";
+  color: var(--rule);
+}
+
+footer.foot {
+  margin-top: 72px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  color: var(--faint);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* motion */
+.reveal {
+  animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(9px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@media (max-width: 860px) {
+  .page {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .rail {
+    position: static;
+    padding: 44px 0 8px;
+  }
+  nav.rnav {
+    flex-flow: row wrap;
+    gap: 6px 16px;
+    margin-top: 22px;
+  }
+  .content {
+    padding-top: 30px;
+    max-width: 100%;
+  }
+  .hero-q {
+    font-size: 27px;
+  }
+  body {
+    font-size: 17px;
+  }
 }
 </style>
