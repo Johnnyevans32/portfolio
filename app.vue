@@ -263,6 +263,21 @@ export default defineComponent({
       {
         idx: "[2]",
         title:
+          "MandateBench: Mandate Faithfulness and Pre-Signature Monitorability for Agentic-Payment LLMs",
+        titleHref: "https://mandatebench.xyz/paper",
+        authorsYou: "Evans Eburu",
+        authorsRest: "",
+        venuePre: "Preprint · 2026",
+        doi: null,
+        links: [
+          { label: "PDF", href: "https://mandatebench.xyz/mandatebench.pdf" },
+          { label: "Live demo", href: "https://mandatebench.xyz" },
+          { label: "Read online", href: "https://mandatebench.xyz/paper" },
+        ],
+      },
+      {
+        idx: "[3]",
+        title:
           "Discrete Event Simulation of a Municipal Meat Production System: Bottleneck Analysis and Optimization",
         titleHref:
           "http://www.rypravlenie.ru/wp-content/uploads/2026/01/05-Eburu_Balungu.pdf",
