@@ -233,6 +233,7 @@ export default defineComponent({
       { name: "email", href: "mailto:evanseburu32@gmail.com" },
       { name: "github", href: "https://github.com/Johnnyevans32" },
       { name: "linkedin", href: "https://www.linkedin.com/in/0xjevan" },
+      { name: "scholar", href: "https://scholar.google.com/citations?user=gvjnYJUAAAAJ" },
       { name: "zenodo", href: "https://doi.org/10.5281/zenodo.21209429" },
       { name: "studio", href: "https://jevan.studio" },
       {
