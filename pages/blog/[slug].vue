@@ -14,21 +14,12 @@
         <NuxtLink class="blog-back" to="/blog">← all posts</NuxtLink>
       </div>
     </template>
-
-    <template v-else>
-      <header class="post-head">
-        <h1 class="post-title">Not found</h1>
-      </header>
-      <p class="prose">
-        That post doesn't exist.
-        <NuxtLink to="/blog">Back to writing</NuxtLink>.
-      </p>
-    </template>
   </div>
 </template>
 
 <script setup lang="ts">
 import { posts } from "~/data/posts";
+import { SITE_CONFIG } from "~/config/seo.config";
 
 const route = useRoute();
 const slug = computed(() => String(route.params.slug));
@@ -57,10 +48,45 @@ if (!post.value) {
   throw createError({ statusCode: 404, statusMessage: "Post not found" });
 }
 
-useHead(() => ({
-  title: post.value ? `${post.value.title} — Evans Eburu` : "Not found",
-  meta: post.value
-    ? [{ name: "description", content: post.value.excerpt }]
-    : [],
-}));
+const p = post.value!;
+const url = `${SITE_CONFIG.hostname}/blog/${p.slug}`;
+const title = `${p.title} · Evans Eburu`;
+const published = `${p.date}-01`;
+
+useHead({
+  title,
+  link: [{ rel: "canonical", href: url }],
+  meta: [
+    { name: "description", content: p.excerpt },
+    { property: "og:type", content: "article" },
+    { property: "og:title", content: title },
+    { property: "og:description", content: p.excerpt },
+    { property: "og:url", content: url },
+    { name: "twitter:title", content: title },
+    { name: "twitter:description", content: p.excerpt },
+    { property: "article:published_time", content: published },
+    { property: "article:author", content: "Evans Eburu" },
+  ],
+  script: [
+    {
+      type: "application/ld+json",
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: p.title,
+        description: p.excerpt,
+        datePublished: published,
+        author: {
+          "@type": "Person",
+          name: "Evans Eburu",
+          url: SITE_CONFIG.hostname,
+        },
+        publisher: { "@type": "Person", name: "Evans Eburu" },
+        mainEntityOfPage: url,
+        url,
+        image: `${SITE_CONFIG.hostname}/evans.JPG`,
+      }),
+    },
+  ],
+});
 </script>
