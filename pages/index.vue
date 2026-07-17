@@ -99,6 +99,16 @@
             <span class="yr">2026</span>
             <span class="ev"
               >Released
+              <a href="https://mandatebench.xyz/paper">MandateBench</a>, a
+              benchmark of whether AI payment agents stay inside signed spending
+              mandates, as a preprint on Zenodo
+              (<a href="https://doi.org/10.5281/zenodo.21411376">DOI</a>).</span
+            >
+          </li>
+          <li>
+            <span class="yr">2026</span>
+            <span class="ev"
+              >Released
               <a href="https://deceptionbench.xyz/paper">DeceptionBench</a>, a
               cross-play benchmark for LLM deception &amp; monitorability, as a
               preprint on Zenodo.</span
@@ -282,8 +292,11 @@ export default defineComponent({
         titleHref: "https://mandatebench.xyz/paper",
         authorsYou: "Evans Eburu",
         authorsRest: "",
-        venuePre: "Preprint · 2026",
-        doi: null,
+        venuePre: "Preprint · Zenodo · 2026 · ",
+        doi: {
+          text: "doi:10.5281/zenodo.21411376",
+          href: "https://doi.org/10.5281/zenodo.21411376",
+        },
         links: [
           { label: "PDF", href: "https://mandatebench.xyz/mandatebench.pdf" },
           { label: "Live demo", href: "https://mandatebench.xyz" },
