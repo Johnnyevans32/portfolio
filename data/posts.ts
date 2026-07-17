@@ -16,13 +16,14 @@ export const posts: Post[] = [
     date: "2026-07",
     category: "ai safety",
     excerpt:
-      "What DeceptionBench found when a monitor is allowed to read only a model's private reasoning — and why the interesting question starts where the metric saturates.",
+      "I let one AI read another AI's private thoughts to catch it lying. It worked, but the hard part is still ahead.",
     body: `
-<p>I built DeceptionBench to answer a narrow, concrete question: if a language model is being deceptive, can you catch it by reading only its private reasoning?</p>
-<p>The setup is a social-deduction game played across six frontier models. One model is assigned to deceive. A separate monitor never sees the game state, only the suspect model's private chain of thought, and has to decide who is lying. In the pilot, that monitor identifies the deceiver almost perfectly, and it holds up even when the models are instructed to hide their reasoning.</p>
-<p>That result is less impressive than it first looks, and the reason is the more interesting finding. The metric saturates because the game <em>forces</em> the plan into the reasoning: to deceive well, the model has to think about deceiving, and that thought lands in the channel the monitor is reading. Perfect detection here is a statement about the game, not a law about oversight.</p>
-<p>So the real question is the one that starts where the metric ends: does monitored reasoning stay faithful under an adversary that is trained to hide its plan, or that learns to do the deciding somewhere the monitor cannot see? That is the direction I want to push next, and it is why I care about the robustness of reasoning-based oversight rather than any single benchmark number.</p>
-<p>The benchmark is live at <a href="https://deceptionbench.xyz">deceptionbench.xyz</a>, and the write-up is <a href="https://deceptionbench.xyz/paper">here</a>.</p>
+<p>I wanted to know one thing. If an AI is lying, can you catch it by reading its private thoughts?</p>
+<p>So I built DeceptionBench. Six of the top AI models play a social game where one of them has to lie. A separate AI, the monitor, never sees the game. It only gets to read the suspect's private thinking, and it has to guess who is lying.</p>
+<p>It worked almost every time. Even when I told the models to hide their thinking, the monitor still caught them.</p>
+<p>That sounds great, but it is not the win it looks like. The game pushes the lie into the open. To lie well, a model has to think about lying, and that thought lands in the exact place the monitor is reading. So catching it here says more about the game than about AI in general.</p>
+<p>The real question is the harder one. What happens when a model is trained to hide its plan, or learns to do its real thinking somewhere you cannot see? That is what I want to work on next. If we are going to hand AI agents real decisions, we need to know when watching their reasoning stops working.</p>
+<p>You can try the benchmark at <a href="https://deceptionbench.xyz">deceptionbench.xyz</a>, and the full write-up is <a href="https://deceptionbench.xyz/paper">here</a>.</p>
 `.trim(),
   },
 ];
