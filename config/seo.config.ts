@@ -82,15 +82,20 @@ export const SITE_CONFIG = {
 };
 
 // Sitemap routes configuration
+import { posts } from "../data/posts";
+
+const TODAY = new Date().toISOString().split("T")[0];
+
 export const SITEMAP_ROUTES = [
-  // Single-page site — only the homepage is a real, indexable URL.
-  // (In-page anchors like #publications are not separate URLs.)
-  {
-    url: "/",
-    priority: 1.0,
-    changefreq: "weekly",
-    lastmod: new Date().toISOString().split("T")[0],
-  },
+  // Homepage + blog. In-page anchors (#publications) are not separate URLs.
+  { url: "/", priority: 1.0, changefreq: "weekly", lastmod: TODAY },
+  { url: "/blog", priority: 0.8, changefreq: "weekly", lastmod: TODAY },
+  ...posts.map((p) => ({
+    url: `/blog/${p.slug}`,
+    priority: 0.7,
+    changefreq: "monthly",
+    lastmod: TODAY,
+  })),
 ];
 
 // A sitemap may only list URLs on this domain. Social profiles belong in the
