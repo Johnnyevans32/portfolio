@@ -250,6 +250,7 @@ export default defineComponent({
         name: "scholar",
         href: "https://scholar.google.com/citations?user=gvjnYJUAAAAJ",
       },
+      { name: "orcid", href: "https://orcid.org/0009-0003-9744-7414" },
       { name: "zenodo", href: "https://doi.org/10.5281/zenodo.21209429" },
       { name: "studio", href: "https://jevan.studio" },
       { name: "cv", href: "/cv.pdf" },
