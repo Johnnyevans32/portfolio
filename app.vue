@@ -1,15 +1,18 @@
 <template>
   <NuxtPage />
+  <AmbientVacation />
 </template>
 
 <style>
 :root {
-  --paper: #f6f6f3;
-  --ink: #16181c;
-  --soft: #57595f;
-  --faint: #8a8c90;
-  --rule: #e1e1da;
-  --accent: #9e2b1b;
+  --paper: #f4ecdc;
+  --paper-2: #faf4e7;
+  --ink: #2e241a;
+  --soft: #71624d;
+  --faint: #a7977e;
+  --rule: #e3d6bd;
+  --accent: #b5491d;
+  --accent-2: #a34a68;
   --serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Palatino,
     "Book Antiqua", Georgia, "Times New Roman", serif;
   --mono: "IBM Plex Mono", "SF Mono", "JetBrains Mono", ui-monospace, Menlo,
@@ -22,21 +25,60 @@
 
 html {
   scroll-behavior: smooth;
+  background: var(--paper);
 }
 
 body,
 html {
   margin: 0;
-  background: var(--paper);
   color: var(--ink);
   font-family: var(--serif);
 }
 
 body {
+  background: transparent;
   font-size: 18px;
   line-height: 1.62;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* ambient haze — a low warm sun that barely moves, like late afternoon */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(62% 46% at 82% -8%, rgba(214, 118, 58, 0.2), transparent 70%),
+    radial-gradient(48% 40% at 6% 110%, rgba(163, 74, 104, 0.13), transparent 70%),
+    linear-gradient(180deg, rgba(255, 248, 236, 0), rgba(233, 200, 155, 0.16));
+  animation: skydrift 42s ease-in-out infinite alternate;
+}
+@keyframes skydrift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(-1.4%, 1.1%, 0) scale(1.045);
+  }
+}
+
+/* film grain — the whole site is a slightly overexposed photograph */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9300;
+  pointer-events: none;
+  opacity: 0.055;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background: rgba(181, 73, 29, 0.2);
 }
 
 .page {
@@ -60,14 +102,21 @@ body {
   height: 94px;
   object-fit: cover;
   object-position: center center;
-  border: 1px solid var(--rule);
   display: block;
   margin-bottom: 22px;
-  filter: grayscale(1) contrast(1.03);
-  transition: filter 0.45s ease;
+  /* a found polaroid, slightly crooked */
+  background: var(--paper-2);
+  border: 4px solid var(--paper-2);
+  outline: 1px solid var(--rule);
+  box-shadow: 0 12px 26px -10px rgba(46, 36, 26, 0.35);
+  transform: rotate(-2.2deg);
+  filter: sepia(0.42) saturate(0.8) contrast(1.02);
+  transition: filter 0.6s ease, transform 0.6s ease, box-shadow 0.6s ease;
 }
 .rail .portrait:hover {
-  filter: grayscale(0) contrast(1);
+  filter: sepia(0) saturate(1);
+  transform: rotate(0deg) scale(1.03);
+  box-shadow: 0 18px 34px -12px rgba(46, 36, 26, 0.42);
 }
 .rail .name {
   font-size: 27px;
@@ -117,7 +166,7 @@ nav.rnav a {
   padding: 3px 0;
   width: max-content;
   border-bottom: 1px solid transparent;
-  transition: color 0.15s, border-color 0.15s;
+  transition: color 0.2s, border-color 0.2s;
 }
 nav.rnav a:hover,
 nav.rnav a:focus-visible {
@@ -139,7 +188,7 @@ nav.rnav a:focus-visible {
   text-decoration: none;
   border-bottom: 1px solid var(--rule);
   padding-bottom: 1px;
-  transition: color 0.15s, border-color 0.15s;
+  transition: color 0.2s, border-color 0.2s;
 }
 .rail .contacts a:hover,
 .rail .contacts a:focus-visible {
@@ -167,7 +216,7 @@ nav.rnav a:focus-visible {
 }
 .bio {
   font-size: 18px;
-  color: #24262b;
+  color: #3a3128;
   margin: 0;
 }
 .bio a {
@@ -184,7 +233,8 @@ nav.rnav a:focus-visible {
 .feature {
   margin-top: 28px;
   border: 1px solid var(--rule);
-  background: #fcfcfa;
+  background: var(--paper-2);
+  box-shadow: 0 16px 38px -22px rgba(46, 36, 26, 0.35);
   padding: 20px 22px;
 }
 .feature-label {
@@ -208,7 +258,7 @@ nav.rnav a:focus-visible {
 }
 .feature-thesis {
   font-size: 16px;
-  color: #26282d;
+  color: #37302a;
   margin: 8px 0 16px;
   line-height: 1.45;
 }
@@ -258,7 +308,7 @@ nav.rnav a:focus-visible {
   text-decoration: none;
   border: 1px solid var(--rule);
   padding: 5px 11px;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 .feature-links a:hover,
 .feature-links a:focus-visible {
@@ -312,7 +362,7 @@ ul.feed .yr {
 }
 ul.feed .ev {
   font-size: 16.5px;
-  color: #26282d;
+  color: #37302a;
   line-height: 1.5;
 }
 ul.feed .ev a {
@@ -396,7 +446,7 @@ ol.pubs {
   text-decoration: none;
   border: 1px solid var(--rule);
   padding: 4px 9px;
-  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 .pub-links a:hover,
 .pub-links a:focus-visible {
@@ -434,7 +484,7 @@ ul.rows li:first-child {
   color: var(--ink);
   text-decoration: none;
   border-bottom: 1px solid transparent;
-  transition: border-color 0.15s, color 0.15s;
+  transition: border-color 0.2s, color 0.2s;
 }
 .row-t a:hover {
   color: var(--accent);
@@ -493,7 +543,7 @@ ul.rows li:first-child {
   color: var(--soft);
   text-decoration: none;
   border-bottom: 1px solid var(--rule);
-  transition: color 0.15s, border-color 0.15s;
+  transition: color 0.2s, border-color 0.2s;
 }
 .sec-more:hover,
 .sec-more:focus-visible {
@@ -530,7 +580,7 @@ footer.foot {
   color: var(--soft);
   text-decoration: none;
   border-bottom: 1px solid transparent;
-  transition: color 0.15s, border-color 0.15s;
+  transition: color 0.2s, border-color 0.2s;
 }
 .blog-back:hover,
 .blog-back:focus-visible {
@@ -583,7 +633,7 @@ footer.foot {
 .prose {
   font-size: 18.5px;
   line-height: 1.68;
-  color: #212329;
+  color: #342c24;
 }
 .prose p {
   margin: 0 0 20px;
@@ -617,7 +667,7 @@ footer.foot {
 .prose code {
   font-family: var(--mono);
   font-size: 0.86em;
-  background: #eeeee9;
+  background: #ece1cb;
   padding: 1px 5px;
 }
 .post-foot {
@@ -626,22 +676,27 @@ footer.foot {
   border-top: 1px solid var(--rule);
 }
 
-/* motion */
+/* motion — slow, like waking up without an alarm */
 .reveal {
-  animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation: rise 1.1s cubic-bezier(0.22, 0.61, 0.2, 1) both;
 }
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(9px);
+    transform: translateY(16px);
+    filter: blur(8px);
   }
   to {
     opacity: 1;
     transform: none;
+    filter: none;
   }
 }
 @media (prefers-reduced-motion: reduce) {
   .reveal {
+    animation: none;
+  }
+  body::before {
     animation: none;
   }
   html {
