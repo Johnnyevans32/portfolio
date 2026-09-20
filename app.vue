@@ -1,31 +1,218 @@
 <template>
   <NuxtPage />
+
+  <!-- the planet's sky: stars, one celestial body, weather of the hour -->
+  <div class="sky" aria-hidden="true">
+    <div class="stars"></div>
+    <div class="sun"></div>
+  </div>
+  <!-- the visitor carries a small warm light -->
+  <div class="lantern" aria-hidden="true"></div>
+
   <AmbientVacation />
 </template>
 
+<script setup lang="ts">
+import { onBeforeUnmount, onMounted } from "vue";
+
+// The site keeps its own time, taken from the visitor's clock.
+// dawn 5–8 · day 8–17 · dusk 17–20 · night 20–5
+function applySky() {
+  const now = new Date();
+  const h = now.getHours() + now.getMinutes() / 60;
+  const root = document.documentElement;
+
+  let phase = "night";
+  if (h >= 5 && h < 8) phase = "dawn";
+  else if (h >= 8 && h < 17) phase = "day";
+  else if (h >= 17 && h < 20) phase = "dusk";
+
+  // ?sky=dawn|day|dusk|night overrides the clock (for wandering out of time)
+  const q = new URLSearchParams(window.location.search).get("sky");
+  if (q && ["dawn", "day", "dusk", "night"].includes(q)) phase = q;
+
+  root.dataset.sky = phase;
+
+  // one body crosses the sky: the sun by day, the moon by night
+  let t: number; // 0 → rises left, 1 → sets right
+  if (phase === "night") {
+    const nh = h >= 20 ? h - 20 : h + 4; // 20:00 → 0 … 05:00 → 9
+    t = nh / 9;
+  } else {
+    t = Math.min(1, Math.max(0, (h - 5) / 15)); // 05:00 → 0 … 20:00 → 1
+  }
+  root.style.setProperty("--sun-x", (8 + t * 84).toFixed(2) + "%");
+  root.style.setProperty(
+    "--sun-y",
+    (36 - Math.sin(t * Math.PI) * 26).toFixed(2) + "%"
+  );
+}
+
+// lantern follows the hand
+let raf = 0;
+function onMove(e: PointerEvent) {
+  if (raf) return;
+  raf = requestAnimationFrame(() => {
+    raf = 0;
+    const root = document.documentElement;
+    root.style.setProperty("--lx", e.clientX + "px");
+    root.style.setProperty("--ly", e.clientY + "px");
+  });
+}
+
+// the sun sinks a little as you read further
+function onScroll() {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const d = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+  document.documentElement.style.setProperty("--drift", d.toFixed(3));
+}
+
+let clock: ReturnType<typeof setInterval> | null = null;
+
+onMounted(() => {
+  applySky();
+  onScroll();
+  clock = setInterval(applySky, 60_000);
+  window.addEventListener("pointermove", onMove, { passive: true });
+  window.addEventListener("scroll", onScroll, { passive: true });
+});
+
+onBeforeUnmount(() => {
+  if (clock) clearInterval(clock);
+  if (raf) cancelAnimationFrame(raf);
+  window.removeEventListener("pointermove", onMove);
+  window.removeEventListener("scroll", onScroll);
+});
+</script>
+
 <style>
+/* ------- the planet's four hours ------- */
 :root {
   --paper: #f4ecdc;
   --paper-2: #faf4e7;
   --ink: #2e241a;
+  --ink-2: #3a3128;
   --soft: #71624d;
   --faint: #a7977e;
   --rule: #e3d6bd;
   --accent: #b5491d;
-  --accent-2: #a34a68;
+  --code-bg: #ece1cb;
+  --pill-bg: rgba(250, 244, 232, 0.85);
   --serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Palatino,
     "Book Antiqua", Georgia, "Times New Roman", serif;
   --mono: "IBM Plex Mono", "SF Mono", "JetBrains Mono", ui-monospace, Menlo,
     Consolas, monospace;
+
+  /* sky */
+  --sun-c: rgba(255, 214, 150, 0.85);
+  --sun-size: 46vmin;
+  --sun-o: 0.75;
+  --stars-o: 0;
+  --grain-o: 0.055;
+  --grain-blend: multiply;
+  --lantern-o: 0.1;
+  --wash-1: radial-gradient(
+    62% 46% at 82% -8%,
+    rgba(214, 118, 58, 0.2),
+    transparent 70%
+  );
+  --wash-2: radial-gradient(
+    48% 40% at 6% 110%,
+    rgba(163, 74, 104, 0.13),
+    transparent 70%
+  );
+}
+
+html[data-sky="dawn"] {
+  --paper: #f3e7dc;
+  --paper-2: #faf1e8;
+  --ink: #31221f;
+  --ink-2: #40312c;
+  --soft: #77624f;
+  --faint: #ab9783;
+  --rule: #e5d3c2;
+  --accent: #b04a3a;
+  --code-bg: #eee0d2;
+  --sun-c: rgba(255, 196, 168, 0.9);
+  --sun-o: 0.85;
+  --lantern-o: 0.14;
+  --wash-1: radial-gradient(
+    64% 48% at 50% 112%,
+    rgba(214, 118, 120, 0.24),
+    transparent 70%
+  );
+  --wash-2: radial-gradient(
+    52% 42% at 88% -8%,
+    rgba(230, 180, 120, 0.2),
+    transparent 70%
+  );
+}
+
+html[data-sky="dusk"] {
+  --paper: #f0e1c9;
+  --paper-2: #f8ecd8;
+  --ink: #2c1f16;
+  --ink-2: #3d2f22;
+  --soft: #715a42;
+  --faint: #a58d6f;
+  --rule: #e0cda9;
+  --accent: #c1441a;
+  --code-bg: #ecd9b8;
+  --sun-c: rgba(255, 168, 88, 0.95);
+  --sun-o: 0.95;
+  --lantern-o: 0.18;
+  --wash-1: radial-gradient(
+    70% 52% at 50% 116%,
+    rgba(196, 68, 26, 0.26),
+    transparent 72%
+  );
+  --wash-2: radial-gradient(
+    58% 46% at 82% -10%,
+    rgba(96, 52, 84, 0.22),
+    transparent 70%
+  );
+}
+
+html[data-sky="night"] {
+  --paper: #221823;
+  --paper-2: #2c2029;
+  --ink: #ece0c9;
+  --ink-2: #d9cbb2;
+  --soft: #b3a088;
+  --faint: #7f6f63;
+  --rule: #43313b;
+  --accent: #e0803f;
+  --code-bg: #3a2a32;
+  --pill-bg: rgba(44, 32, 41, 0.88);
+  --sun-c: rgba(233, 224, 200, 0.8);
+  --sun-size: 30vmin;
+  --sun-o: 0.6;
+  --stars-o: 0.55;
+  --grain-o: 0.09;
+  --grain-blend: soft-light;
+  --lantern-o: 0.3;
+  --wash-1: radial-gradient(
+    64% 48% at 78% -8%,
+    rgba(120, 84, 130, 0.28),
+    transparent 72%
+  );
+  --wash-2: radial-gradient(
+    50% 42% at 8% 110%,
+    rgba(196, 106, 58, 0.14),
+    transparent 70%
+  );
 }
 
 * {
   box-sizing: border-box;
+  transition: background-color 2.4s ease, border-color 2.4s ease,
+    color 2.4s ease;
 }
 
 html {
   scroll-behavior: smooth;
   background: var(--paper);
+  transition: background 2.4s ease;
 }
 
 body,
@@ -43,42 +230,111 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* ambient haze — a low warm sun that barely moves, like late afternoon */
-body::before {
-  content: "";
+/* ------- the sky itself ------- */
+.sky {
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background:
-    radial-gradient(62% 46% at 82% -8%, rgba(214, 118, 58, 0.2), transparent 70%),
-    radial-gradient(48% 40% at 6% 110%, rgba(163, 74, 104, 0.13), transparent 70%),
-    linear-gradient(180deg, rgba(255, 248, 236, 0), rgba(233, 200, 155, 0.16));
-  animation: skydrift 42s ease-in-out infinite alternate;
+  overflow: hidden;
+  background: var(--wash-1), var(--wash-2);
 }
-@keyframes skydrift {
+.stars {
+  position: absolute;
+  inset: 0;
+  opacity: var(--stars-o);
+  transition: opacity 3s ease;
+  background-image:
+    radial-gradient(1.4px 1.4px at 22% 28%, rgba(255, 244, 220, 0.9), transparent 100%),
+    radial-gradient(1px 1px at 68% 14%, rgba(255, 244, 220, 0.8), transparent 100%),
+    radial-gradient(1.2px 1.2px at 84% 42%, rgba(255, 244, 220, 0.7), transparent 100%),
+    radial-gradient(1px 1px at 42% 8%, rgba(255, 244, 220, 0.75), transparent 100%),
+    radial-gradient(1.3px 1.3px at 12% 58%, rgba(255, 244, 220, 0.6), transparent 100%),
+    radial-gradient(1px 1px at 56% 62%, rgba(255, 244, 220, 0.65), transparent 100%),
+    radial-gradient(1.1px 1.1px at 92% 74%, rgba(255, 244, 220, 0.6), transparent 100%),
+    radial-gradient(1px 1px at 32% 82%, rgba(255, 244, 220, 0.55), transparent 100%);
+  animation: twinkle 6s ease-in-out infinite alternate;
+}
+@keyframes twinkle {
   from {
-    transform: translate3d(0, 0, 0) scale(1);
+    opacity: calc(var(--stars-o) * 0.7);
   }
   to {
-    transform: translate3d(-1.4%, 1.1%, 0) scale(1.045);
+    opacity: var(--stars-o);
+  }
+}
+.sun {
+  position: absolute;
+  left: var(--sun-x, 60%);
+  top: var(--sun-y, 20%);
+  width: var(--sun-size);
+  height: var(--sun-size);
+  transform: translate(-50%, -50%) translateY(calc(var(--drift, 0) * 8vh));
+  background: radial-gradient(circle, var(--sun-c), transparent 68%);
+  filter: blur(2px);
+  opacity: var(--sun-o);
+  transition: left 3s ease, top 3s ease, opacity 3s ease, width 3s ease,
+    height 3s ease;
+  animation: sunbreathe 9s ease-in-out infinite alternate;
+}
+@keyframes sunbreathe {
+  from {
+    filter: blur(2px) brightness(1);
+  }
+  to {
+    filter: blur(3px) brightness(1.07);
   }
 }
 
-/* film grain — the whole site is a slightly overexposed photograph */
+/* the visitor's lantern */
+.lantern {
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background: radial-gradient(
+    340px circle at var(--lx, 72%) var(--ly, 28%),
+    rgba(255, 198, 132, var(--lantern-o)),
+    transparent 70%
+  );
+  transition: background 0.6s ease;
+}
+
+/* film grain — living, not static */
 body::after {
   content: "";
   position: fixed;
-  inset: 0;
+  inset: -60px;
   z-index: 9300;
   pointer-events: none;
-  opacity: 0.055;
-  mix-blend-mode: multiply;
+  opacity: var(--grain-o);
+  mix-blend-mode: var(--grain-blend);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grainflicker 1.1s steps(1) infinite;
+}
+@keyframes grainflicker {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-18px, 12px);
+  }
+  40% {
+    transform: translate(14px, -20px);
+  }
+  60% {
+    transform: translate(-10px, -14px);
+  }
+  80% {
+    transform: translate(16px, 18px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
 ::selection {
-  background: rgba(181, 73, 29, 0.2);
+  background: rgba(181, 73, 29, 0.28);
 }
 
 .page {
@@ -216,7 +472,7 @@ nav.rnav a:focus-visible {
 }
 .bio {
   font-size: 18px;
-  color: #3a3128;
+  color: var(--ink-2);
   margin: 0;
 }
 .bio a {
@@ -258,7 +514,7 @@ nav.rnav a:focus-visible {
 }
 .feature-thesis {
   font-size: 16px;
-  color: #37302a;
+  color: var(--ink-2);
   margin: 8px 0 16px;
   line-height: 1.45;
 }
@@ -362,7 +618,7 @@ ul.feed .yr {
 }
 ul.feed .ev {
   font-size: 16.5px;
-  color: #37302a;
+  color: var(--ink-2);
   line-height: 1.5;
 }
 ul.feed .ev a {
@@ -633,10 +889,19 @@ footer.foot {
 .prose {
   font-size: 18.5px;
   line-height: 1.68;
-  color: #342c24;
+  color: var(--ink-2);
 }
 .prose p {
   margin: 0 0 20px;
+}
+/* essays begin like an old book */
+.prose > p:first-of-type::first-letter {
+  font-style: italic;
+  font-size: 3.1em;
+  line-height: 0.82;
+  float: left;
+  padding: 5px 10px 0 0;
+  color: var(--accent);
 }
 .prose h2 {
   font-size: 22px;
@@ -667,7 +932,7 @@ footer.foot {
 .prose code {
   font-family: var(--mono);
   font-size: 0.86em;
-  background: #ece1cb;
+  background: var(--code-bg);
   padding: 1px 5px;
 }
 .post-foot {
@@ -692,12 +957,19 @@ footer.foot {
     filter: none;
   }
 }
+
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
+  .reveal,
+  body::after,
+  .stars,
+  .sun {
     animation: none;
   }
-  body::before {
-    animation: none;
+  .lantern {
+    display: none;
+  }
+  * {
+    transition: none;
   }
   html {
     scroll-behavior: auto;
