@@ -769,6 +769,25 @@ ul.rows li:first-child {
 .row-meta .now {
   color: var(--accent);
 }
+.proj-shot {
+  display: block;
+  margin: 2px 0 12px;
+  border: none !important;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--code-bg);
+  aspect-ratio: 1200 / 508;
+}
+.proj-shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.proj-shot:hover img {
+  transform: scale(1.015);
+}
 .tags {
   display: flex;
   flex-wrap: wrap;
