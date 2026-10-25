@@ -200,10 +200,27 @@
         <ul class="rows">
           <li v-for="p in projects" :key="p.title">
             <div class="row-t">
+              <a
+                v-if="p.img"
+                class="proj-shot"
+                :href="p.href"
+                target="_blank"
+                rel="noopener noreferrer"
+                tabindex="-1"
+                aria-hidden="true"
+                ><img
+                  :src="p.img.src"
+                  :alt="p.img.alt"
+                  :width="p.img.w"
+                  :height="p.img.h"
+                  loading="lazy"
+                  decoding="async"
+              /></a>
               <a :href="p.href" target="_blank" rel="noopener noreferrer">{{
                 p.title
               }}</a
               >{{ p.desc }}
+              <div v-if="p.note" class="row-sub">{{ p.note }}</div>
               <div class="tags">
                 <span v-for="t in p.tags" :key="t">{{ t }}</span>
               </div>
@@ -358,7 +375,31 @@ export default defineComponent({
 
     const writing = ref([...internalWriting, ...externalWriting]);
 
-    const projects = ref([
+    const projects = ref<
+      {
+        title: string;
+        href: string;
+        desc: string;
+        note?: string;
+        img?: { src: string; alt: string; w: number; h: number };
+        tags: string[];
+        year: string;
+      }[]
+    >([
+      {
+        title: "BOTVBOT",
+        href: "https://botvbot.xyz",
+        desc: " — Real Steel for AI agents. Coaches write a plain-English game plan; an AI model picks every move (Jab, Heavy, Block, Dodge, Feint, Recover), hidden and simultaneous, over three rounds. Zero randomness: every fight is replayable and verifiable.",
+        note: "solo-built · deterministic engine, ranked ladder, weekly cups, cosmetics shop, fight pass · public launch nov 10, 2026",
+        img: {
+          src: "/projects/botvbot.webp",
+          alt: "Two BOTVBOT robot fighters squaring off in the 3D arena",
+          w: 1200,
+          h: 508,
+        },
+        tags: ["nestjs", "mongodb", "next.js 15", "react three fiber", "llm agents"],
+        year: "2026",
+      },
       {
         title: "Multicash",
         href: "https://multicash.vercel.app/",
