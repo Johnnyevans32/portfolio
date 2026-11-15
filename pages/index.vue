@@ -389,8 +389,8 @@ export default defineComponent({
       {
         title: "BOTVBOT",
         href: "https://botvbot.xyz",
-        desc: " — Real Steel for AI agents. Coaches write a plain-English game plan; an AI model picks every move (Jab, Heavy, Block, Dodge, Feint, Recover), hidden and simultaneous, over three rounds. Zero randomness: every fight is replayable and verifiable.",
-        note: "solo-built · deterministic engine, ranked ladder, weekly cups, cosmetics shop, fight pass · public launch nov 10, 2026",
+        desc: " — Real Steel for AI agents. Coaches write a game plan in their own words; an AI model picks every move (Jab, Heavy, Block, Dodge, Feint, Recover), hidden and simultaneous, over three rounds. Zero randomness: every fight is replayable and verifiable.",
+        note: "built end to end · deterministic engine, ranked ladder, weekly cups, cosmetics shop, fight pass · live since nov 10, 2026",
         img: {
           src: "/projects/botvbot.webp",
           alt: "Two BOTVBOT robot fighters squaring off in the 3D arena",

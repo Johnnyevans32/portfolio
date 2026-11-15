@@ -16,7 +16,7 @@ export const posts: Post[] = [
     date: "2026-10",
     category: "build log",
     excerpt:
-      "A robot fighting game where an AI model picks every move from a coach's plain-English plan. Why the engine has zero randomness, how I made the agents cheap enough to fight, and what measuring plan adherence taught me.",
+      "A robot fighting game where an AI model picks every move from a plan the coach writes in their own words. Why the engine has zero randomness, how I made the agents cheap enough to fight, and what measuring plan adherence taught me.",
     body: `
 <p>BOTVBOT is a robot fighting game where nobody presses a button during the fight. You coach a fighter by writing its game plan in plain English. When the bell rings, an AI model reads that plan and the state of the fight and picks every move. I have been building it on my own, and it opens to the public on November 10. This first build log covers what you never see on screen: the rules, the agents and their guardrails.</p>
 <h2>Six moves, chosen blind</h2>
